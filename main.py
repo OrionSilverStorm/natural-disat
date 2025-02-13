@@ -146,9 +146,9 @@ def ChooseAction(diseasterRevealed):
 print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\nEnter the players:\n ")
 playerInput = ""
 while contInput:
-  playerInput = str(input("Enter new Player name(x to quit): "))
+  playerInput = str(input("Enter new Player name(Enter to quit): "))
 
-  if playerInput == "x":
+  if playerInput == "":
     print("\nPRESS ENTER TO CONTINUE\n")
     contInput = False
     contValidation = False
@@ -165,7 +165,7 @@ while contInput:
       else:
         contValidation = False
 
-  if playerInput != "x":
+  if playerInput != "":
     match pAlignment:
       case 1:
         hiderList.append(playerInput)
