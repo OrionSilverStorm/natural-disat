@@ -133,6 +133,8 @@ def ChooseAction(diseasterRevealed):
       #find index of natural diseaster
       diseasterIndex = data["disasters"].index(currentDiseaster)
 
+      
+      # TODO; fix cursedness with indexes
       #show diseaster deaths
       if diseasterRevealed == True:
         if len(totalPlayerList) != 0: Death("enviromental", r.choice(totalPlayerList), r.choice(naturalDisDeaths[diseasterIndex]), None)
