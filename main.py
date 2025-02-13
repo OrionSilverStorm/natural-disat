@@ -142,7 +142,7 @@ def ChooseAction(diseasterRevealed):
 
     #diseaster deaths
     case 5:
-      # TODO rewrite ===========================================
+      # TODO rewrite ========================================================================================================
       
       #find index of natural diseaster
       diseasterIndex = data["disasters"].index(currentDiseaster)
