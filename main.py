@@ -5,7 +5,7 @@ import json
 #open json file
 data = json.load(open("data.json", "r"))
 
-naturalDisDeaths = [["suffocates from the smoke in the air"], ["drowns"], ["falls into the cracks of the Earth"], ["gets yeeted into oblivion by the strong winds"],
+naturalDisDeaths = [["suffocates from the smoke in the air", "tried to swim in lava"], ["drowns"], ["falls into the cracks of the Earth"], ["gets yeeted into oblivion by the strong winds"],
                     ["gets pummeled by an asteriod"], ["dies of regret due to stock market crash"], ["gets shazamed by lightning"], ["dies of frostbite"]]
 
 diseasterSigns = [["see smoke rising in the distance"], ["sees the water recceding", "notices a lack of animals"], ["feels some shaking", "sees animals freaking out"], ["can see strong winds in the horizon", "sees a lack of birds"],
