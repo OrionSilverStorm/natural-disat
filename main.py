@@ -5,11 +5,23 @@ import json
 #open json file
 data = json.load(open("data.json", "r"))
 
-naturalDisDeaths = [["suffocates from the smoke in the air", "tried to swim in lava"], ["drowns"], ["falls into the cracks of the Earth"], ["gets yeeted into oblivion by the strong winds"],
-                    ["gets pummeled by an asteriod"], ["dies of regret due to stock market crash"], ["gets shazamed by lightning"], ["dies of frostbite"]]
+naturalDisDeaths = [["suffocates from the smoke in the air", "tried to swim in lava"],
+                    ["drowns"],
+                    ["falls into the cracks of the Earth"],
+                    ["gets yeeted into oblivion by the strong winds"],
+                    ["gets pummeled by an asteriod"],
+                    ["dies of regret due to stock market crash"],
+                    ["gets shazamed by lightning"],
+                    ["dies of frostbite"]]
 
-diseasterSigns = [["see smoke rising in the distance"], ["sees the water recceding", "notices a lack of animals"], ["feels some shaking", "sees animals freaking out"], ["can see strong winds in the horizon", "sees a lack of birds"],
-                    ["sees a flashing light in the sky"], ["sees many frantic people in suits panicking"], ["hears a distant boom"], ["starts to see its snowing"]]
+diseasterSigns = [["see smoke rising in the distance"],
+                  ["sees the water recceding", "notices a lack of animals"],
+                  ["feels some shaking", "sees animals freaking out"],
+                  ["can see strong winds in the horizon", "sees a lack of birds"],
+                  ["sees a flashing light in the sky"],
+                  ["sees many frantic people in suits panicking"],
+                  ["hears a distant boom"],
+                  ["starts to see its snowing"]]
 
 hiderList = ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"]
 explorerList =["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"]
@@ -130,6 +142,8 @@ def ChooseAction(diseasterRevealed):
 
     #diseaster deaths
     case 5:
+      # TODO rewrite ===========================================
+      
       #find index of natural diseaster
       diseasterIndex = data["disasters"].index(currentDiseaster)
 

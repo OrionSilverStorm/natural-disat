@@ -10,6 +10,14 @@
         "Blizzard"
     ],
 
+    "disastersNew": [
+        {
+            "name": "volcanic eruption",
+            "warning": ["see smoke rising in the distance"],
+            "death": ["suffocates from the smoke in the air", "tried to swim in lava"]
+        }
+    ],
+
     "maps": [
         "Mount Everest",
         "London",
