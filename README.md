@@ -1,8 +1,8 @@
 "I met a programmer from an exquisitely confusing land,
 Who said—“Two vast and trunkless legs of steel
 Stand in the matrix. . . . Near them, on the binary,
-Half sunk a shattered visage lies, whose frown,
-And wrinkled lip, and sneer of cold command,
+Half sunk a shattered command line lies, whose frown,
+And wrinkled text, and sneer of cold command,
 Tell that its sculptor well those passions read
 Which yet survive, stamped on these lifeless things,
 The hand that mocked them, and the heart that fed;
