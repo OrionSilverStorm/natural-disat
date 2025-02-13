@@ -7,7 +7,8 @@
         "Asteroid",
         "Great Deppression",
         "Super Storm",
-        "Blizzard"],
+        "Blizzard"
+    ],
 
     "maps": [
         "Mount Everest",
@@ -15,7 +16,7 @@
         "Antractica",
         "Amazon Rainforest",
         "Atlantis"
-        ],
+    ],
     
     "hiderActions": [
         "gets drunk on cactus juice",
@@ -82,7 +83,8 @@
         "gets invitied to raid a duengon by"
     ],
 
-    "socailDeaths": ["fell into a pit of spikes dug by",
+    "socailDeaths": [
+        "fell into a pit of spikes dug by",
         "was stabbed by",
         "was lit onto fire by",
         "was roasted by a dragon ridden by",
@@ -92,23 +94,49 @@
         "eats the poisoniously bad cooking of"
     ],
 
-    "hallucinations": ["is talking to themselves",
+    "hallucinations": [
+        "is talking to themselves",
         "is hallucinating",
         "is murmuring to themselves"
     ],
 
-    "suicides": ["has committed sekapoko",
+    "suicides": [
+        "has committed sekapoko",
         "has committed a very unnessecary 'kamikaze'",
         "has chosen the sweet relief of not exisiting anymore",
         "dipped a finger into the abyss and fell in",
         "thought self harm was the way to go"
     ],
 
-    "hiderList": ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"],
-    "explorerList":["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"],
-    "fighterList": ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Jin-Woo", "Zoro"]
+    "hiderList": [
+        "Eris",
+        "Agnes",
+        "Artem",
+        "Luca",
+        "Burney",
+        "Rhodrigo",
+        "Ussop"
+    ],
 
+    "explorerList":[
+        "Shiven",
+        "Jacob",
+        "Joe",
+        "Zach",
+        "Xavi",
+        "the Ki-high-ye-on",
+        "Luffy"
+    ],
 
-
+    "fighterList": [
+        "Lucas",
+        "Felix",
+        "Jospeh",
+        "Harry",
+        "Libby",
+        "Beth",
+        "Sung Jin-Woo",
+        "Zoro"
+    ]
 
 }
