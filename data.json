@@ -1,5 +1,6 @@
 {
-    "disasters": ["Volcanoe Eruption",
+    "disasters": [
+        "Volcanoe Eruption",
         "Tsunami",
         "Earthquake",
         "Tornado",
@@ -8,14 +9,13 @@
         "Super Storm",
         "Blizzard"],
 
-    "maps": ["Volcanoe Eruption",
-        "Tsunami",
-        "Earthquake",
-        "Tornado",
-        "Asteroid",
-        "Great Deppression",
-        "Super Storm",
-        "Blizzard"],
+    "maps": [
+        "Mount Everest",
+        "London",
+        "Antractica",
+        "Amazon Rainforest",
+        "Atlantis"
+        ],
     
     "hiderActions": [
         "gets drunk on cactus juice",
@@ -95,7 +95,13 @@
     "hallucinations": ["is talking to themselves",
         "is hallucinating",
         "is murmuring to themselves"
-    ]
+    ],
+
+    "suicides": ["has committed sekapoko",
+        "has committed a very unnessecary 'kamikaze'",
+        "has chosen the sweet relief of not exisiting anymore",
+        "dipped a finger into the abyss and fell in",
+        "thought self harm was the way to go"]
 
 
 }
