@@ -11,11 +11,8 @@ explorerActions = data["explorerActions"]
 fighterActions = data["fighterActions"]
 socailInteractions = data["socailInteractions"]
 socailDeaths = data["socailDeaths"]
-
 hallucinationList = data["hallucinations"]
-
-selfOppsieDeaths = ["has committed sekapoko", "has committed a very unnessecary 'kamikaze'", "has chosen the sweet relief of not exisiting anymore",
-                    "dipped a finger into the abyss and fell in", "thought self harm was the way to go"]
+selfOppsieDeaths = data["suicides"]
 
 naturalDisDeaths = [["suffocates from the smoke in the air"], ["drowns"], ["falls into the cracks of the Earth"], ["gets yeeted into oblivion by the strong winds"],
                     ["gets pummeled by an asteriod"], ["dies of regret due to stock market crash"], ["gets shazamed by lightning"], ["dies of frostbite"]]
