@@ -6,41 +6,13 @@ import json
 data = json.load(open("data.json", "r"))
 disastersList = data["disasters"]
 maps = data["maps"]
-#hider
-hiderActions = [
-    "gets drunk on cactus juice", "falls into a sinkhole, yet comes out without a scratch",
-    "digs themself into a ditch", "hides in a bush",
-    "tries to use a dinosaur as a meat shield", "yawns",
-    "finds a shield to defend themself", "gets bored", "befriends a chicken",
-]
-#explorer
-explorerActions = [
-    "finds aN UNDERGROUND crypt", "finds an Indianna Jones costume",
-    "fights a balraug at the centre of the map",
-    "is making makeshift daddy lillus wings to get to the sun",
-    "discovers they are adopted",
-    "refuses to stop exploring a duegon after losing a limb", "finds a dragon",
-    "becomes a bard", "finds a talking coconut", "almost woke up an ancient evil", "is reading the Lord of the rings", "has found the better ending for solo leveling", "is running away from a boulder that wont stop chasing them", "is recreating ceasers death"
-]
-#fighter
-fighterActions = [
-    "FINDS AN AXE", "unseamed a goliath from the knave to the chaps",
-    "chops a tree", "has decided to eradicate all plant life",
-    "causes a forest fire", "evolves into a karen", "man handles a bird",
-    "jumps of a cliff\n\nAND SURVIVES",
-    "succumbs to their barbarian instincts and rages",
-    "made all the cute animals 'go to sleep'", "uses Lucas as a punching bag", "uses Felix as a punching bag", "Yells 'FOR DEMOCRACY AND FREEDOM' while running head first into a hole", "is fending of the USA after accedently finding oil", "hit the ground with a pickaxe", "launches themseleve via a catapult", "gets hunted by wolves", "is hunting wolves", "becomes a werewolf","is napping", "kills a chicken"
-]
+hiderActions = data["hiderActions"]
+explorerActions = data["explorerActions"]
+fighterActions = data["fighterActions"]
+socailInteractions = data["socailInteractions"]
+socailDeaths = data["socailDeaths"]
 
-socailInteractions = [
-    "forms a bromance with", "arrests",
-    "gets backhanded down a flight of stairs by", "engages in a boxing match with",
-    "plunders the camp of", "kidnaps the dog of",
-    "is disscussing the current politcal climate with", "is playing russiann roulette", "gets invitied to raid a duengon by"
-]
-socailDeaths = ["fell into a pit of spikes dug by", "was stabbed by", "was lit onto fire by", "was roasted by a dragon ridden by", "was obliterated by", "gets 180 full scoped by", "got shot by", "eats the poisoniously bad cooking of"]
-
-hallucinationList = ["is talking to themselves", "is hallucinating", "is murmuring to themselves"]
+hallucinationList = data["hallucinations"]
 
 selfOppsieDeaths = ["has committed sekapoko", "has committed a very unnessecary 'kamikaze'", "has chosen the sweet relief of not exisiting anymore",
                     "dipped a finger into the abyss and fell in", "thought self harm was the way to go"]
