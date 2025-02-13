@@ -14,6 +14,8 @@ diseasterSigns = [["see smoke rising in the distance"], ["sees the water reccedi
 hiderList = ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"]
 explorerList =["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"]
 fighterList = ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Jin-Woo", "Zoro"]
+
+
 # init vars
 totalPlayerList = []
 currentDiseaster = ""
@@ -131,6 +133,8 @@ def ChooseAction(diseasterRevealed):
       #find index of natural diseaster
       diseasterIndex = data["disasters"].index(currentDiseaster)
 
+      
+      # TODO; fix cursedness with indexes
       #show diseaster deaths
       if diseasterRevealed == True:
         if len(totalPlayerList) != 0: Death("enviromental", r.choice(totalPlayerList), r.choice(naturalDisDeaths[diseasterIndex]), None)
