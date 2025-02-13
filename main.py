@@ -1,13 +1,11 @@
 import random as r
+import json
 
-#---------------------------------------------------------------------------------------------------------LISTS/VARS
-disastersList = [
-    "Volcanoe Eruption", "Tsunami", "Earthquake", "Tornado", "Asteroid",
-    "Great Deppression", "Super Storm", "Blizzard"
-]
-maps = [
-    "Mount Everest", "London", "Antarctica", "Amazon Rainforest", "Atlantis"
-]
+#---------------------------------------------------------------------------------------------------------Read in json
+#open json file
+data = json.load(open("data.json", "r"))
+disastersList = data["disasters"]
+maps = data["maps"]
 #hider
 hiderActions = [
     "gets drunk on cactus juice", "falls into a sinkhole, yet comes out without a scratch",

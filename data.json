@@ -1,0 +1,20 @@
+{
+    "disasters": ["Volcanoe Eruption",
+        "Tsunami",
+        "Earthquake",
+        "Tornado",
+        "Asteroid",
+        "Great Deppression",
+        "Super Storm",
+        "Blizzard"],
+
+    "maps": ["Volcanoe Eruption",
+        "Tsunami",
+        "Earthquake",
+        "Tornado",
+        "Asteroid",
+        "Great Deppression",
+        "Super Storm",
+        "Blizzard"]
+
+}
