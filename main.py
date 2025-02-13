@@ -45,13 +45,13 @@ diseasterRevealed = False
 def Random(min, max):
   return r.randint(min, max)
 
-#choose map, if specail map choose speacil diseaster
+# choose map, if specail map choose speacil diseaster
 match currentMap:
   case "London":
     #use rng to get prob of getting depression
     rng = Random(0, 100)
     if rng >= 50:
-        currentDiseaster = "Great Deppression"
+        currentDiseaster = "Great Deppression" # this doesn't work
     #else just like base case
     else:
       currentDiseaster = r.choice(data["disasters"])
