@@ -53,7 +53,7 @@ diseasterSigns = [["see smoke rising in the distance"], ["sees the water reccedi
 
 hiderList = ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"]
 explorerList =["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"]
-fighterList = ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Ji-Woo", "Zoro"]
+fighterList = ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Jin-Woo", "Zoro"]
 totalPlayerList = []
 currentDiseaster = ""
 contInput = True
