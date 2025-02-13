@@ -15,7 +15,9 @@
         "London",
         "Antractica",
         "Amazon Rainforest",
-        "Atlantis"
+        "Atlantis",
+        "Mars",
+        "The Moon"
     ],
     
     "hiderActions": [
@@ -27,7 +29,13 @@
         "yawns",
         "finds a shield to defend themself",
         "gets bored",
-        "befriends a chicken"
+        "befriends a chicken",
+        "is deciphering the enigma code",
+        "is trying to find the meaning of life",
+        "is trying to find the meaning of death",
+        "is trying to find the meaning of the universe",
+        "is trying to find the meaning of the multiverse",
+        "is trying to find the meaning of the omniverse"
     ],
 
     "explorerActions": [
@@ -80,7 +88,14 @@
         "kidnaps the dog of",
         "is disscussing the current politcal climate with",
         "is playing russiann roulette",
-        "gets invitied to raid a duengon by"
+        "gets invitied to raid a duengon by",
+        "is having a tea party with",
+        "is having a staring contest with",
+        "is having a rap battle with",
+        "is having a dance off with",
+        "is having a cook off with",
+        "is having a drinking contest with",
+        "is playing chess with"
     ],
 
     "socailDeaths": [
