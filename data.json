@@ -101,7 +101,14 @@
         "has committed a very unnessecary 'kamikaze'",
         "has chosen the sweet relief of not exisiting anymore",
         "dipped a finger into the abyss and fell in",
-        "thought self harm was the way to go"]
+        "thought self harm was the way to go"
+    ],
+
+    "hiderList": ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"],
+    "explorerList":["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"],
+    "fighterList": ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Jin-Woo", "Zoro"]
+
+
 
 
 }
