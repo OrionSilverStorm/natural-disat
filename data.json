@@ -9,14 +9,13 @@
         "Super Storm",
         "Blizzard"],
 
-    "maps": ["Volcanoe Eruption",
-        "Tsunami",
-        "Earthquake",
-        "Tornado",
-        "Asteroid",
-        "Great Deppression",
-        "Super Storm",
-        "Blizzard"],
+    "maps": [
+        "Mount Everest",
+        "London",
+        "Antractica",
+        "Amazon Rainforest",
+        "Atlantis"
+        ],
     
     "hiderActions": [
         "gets drunk on cactus juice",
