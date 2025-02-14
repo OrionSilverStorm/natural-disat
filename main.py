@@ -1,5 +1,6 @@
-import random as r
+import random
 import json
+from funcs import *
 
 #---------------------------------------------------------------------------------------------------------Read in json
 #open json file
@@ -11,48 +12,43 @@ contInput = True
 contValidation = True
 contMain = True
 #choose current map
-currentMap = r.choice(data["maps"])
+currentMap = random.choice(data["maps"])
 diseasterRevealed = False
 
 #-----------------------------------------------------------------------------------------------------------------FUNC
 
-# choose map, if specail map choose speacil diseaster
-# then get the disaster
-def choseDisaster(map):
-    if r.randint(0, 100)>= 50:# probability of map specific disaster
-        match currentMap:
+def choseDisaster(map: str) -> dict:
+    if random.randint(0, 100)>= 50:# probability of map specific disaster
+        match map:
             case "London":
                 disaster = [i for i in data["disasters"] if i["name"] == "Great Deppression"]
 
             #base case
             case _:
-                disaster = r.choice(data["disasters"])
+                disaster = random.choice(data["disasters"])
     else:
-        disaster = r.choice(data["disasters"])
+        disaster = random.choice(data["disasters"])
     
     return disaster
 
-disaster = choseDisaster(currentMap)
-
-#player actions for each alignement
 def PlayerAction(alignmentList, alignmentActions):    
     #choose p1
-    player = r.choice(alignmentList)
+    player = random.choice(alignmentList)
 
     if len(alignmentList) != 0:        
         #pick a player and their respective alignment action
-        print(f"{player} {r.choice(alignmentActions)}")
+        print(f"{player} {random.choice(alignmentActions)}")
 
 def PlayerSocailInteractions():
-    player1 = r.choice(totalPlayerList)
-    player2 = r.choice(totalPlayerList)
+    player1 = random.choice(totalPlayerList)
+    player2 = random.choice(totalPlayerList)
 
     #socail intercaction
-    print(f"{player1} {r.choice(data["socailInteractions"])} {player2}")
+    print(f"{player1} {random.choice(data["socailInteractions"])} {player2}")
 
     #check for player dups
     if player1 == player2:
-        print(player1 + " " + r.choice(data["hallucinations"]))
+        print(player1 + " " + random.choice(data["hallucinations"]))
 
 #death
 def Death(deathType, victim, deathMessage, killer):    
@@ -64,7 +60,7 @@ def Death(deathType, victim, deathMessage, killer):
 
     #check for self oppsies
     if victim == killer:
-        print(victim + " " + r.choice(data["suicides"]))
+        print(victim + " " + random.choice(data["suicides"]))
 
     #search to find which faction list the victim is in and removes him
     if victim in data["hiderList"]:
@@ -85,19 +81,20 @@ def Death(deathType, victim, deathMessage, killer):
 def AnnounceDiseaster():
         global diseasterRevealed
         diseasterRevealed = False
-        rng = r.randint(0,100)
+        rng = random.randint(0,100)
         #if rng or player list is low
         if (rng > 100-5 or len(totalPlayerList) < 5) and (not diseasterRevealed):
                 print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
                 diseasterRevealed = True
-#Choose r.randint action
+                
+#Choose random.randint action
 def ChooseAction(diseasterRevealed):
 
     if not diseasterRevealed:
          AnnounceDiseaster()
 
     list1 = [1,2,3,4,5,6]
-    action = r.choice(list1)
+    action = random.choice(list1)
     match action:
         #if list not 0 do the chosen action
         #hide player actions
@@ -118,15 +115,23 @@ def ChooseAction(diseasterRevealed):
         case 5:
             if diseasterRevealed:
                 # kill player
-                if len(totalPlayerList) != 0: Death("enviromental", r.choice(totalPlayerList), r.choice(disaster["deaths"]), None)
+                if len(totalPlayerList) != 0: Death("enviromental", random.choice(totalPlayerList), random.choice(disaster["deaths"]), None)
             else:
                 # show signes of disaster
-                print(f"{r.choice(totalPlayerList)} {r.choice(disaster["warnings"])}")
+                print(f"{random.choice(totalPlayerList)} {random.choice(disaster["warnings"])}")
             
 
         #player murder deaths
         case 6:
-            if len(totalPlayerList) != 0: Death("socail", r.choice(totalPlayerList), r.choice(data["socailDeaths"]), r.choice(totalPlayerList))
+            if len(totalPlayerList) != 0: Death("socail", random.choice(totalPlayerList), random.choice(data["socailDeaths"]), random.choice(totalPlayerList))
+
+# choose map, if specail map choose speacil diseaster
+# then get the disaster
+
+
+disaster = choseDisaster(currentMap)
+
+#player actions for each alignement
 
 #-----------------------------
 print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\nEnter the players:\n ")
