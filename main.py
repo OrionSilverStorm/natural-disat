@@ -16,26 +16,23 @@ diseasterRevealed = False
 
 #-----------------------------------------------------------------------------------------------------------------FUNC
 
-#random func
-
-def Random(min, max):
-    return r.randint(min, max)
-
 # choose map, if specail map choose speacil diseaster
 # then get the disaster
-match currentMap:
-    case "London":
-        #use rng to get prob of getting depression
-        rng = Random(0, 100)
-        if rng >= 50 and 0:# and 0 prevents the code from running
-                currentDiseaster = "Great Deppression" # this won't work
-        #else just like base case
-        else:
-            disaster = r.choice(data["disasters"])
+def choseDisaster(map):
+    if r.randint(0, 100)>= 50:# probability of map specific disaster
+        match currentMap:
+            case "London":
+                disaster = [i for i in data["disasters"] if i["name"] == "Great Deppression"]
 
-    #base case
-    case _:
+            #base case
+            case _:
+                disaster = r.choice(data["disasters"])
+    else:
         disaster = r.choice(data["disasters"])
+    
+    return disaster
+
+disaster = choseDisaster(currentMap)
 
 #player actions for each alignement
 def PlayerAction(alignmentList, alignmentActions):    
@@ -88,12 +85,12 @@ def Death(deathType, victim, deathMessage, killer):
 def AnnounceDiseaster():
         global diseasterRevealed
         diseasterRevealed = False
-        rng = Random(0,100)
+        rng = r.randint(0,100)
         #if rng or player list is low
         if (rng > 100-5 or len(totalPlayerList) < 5) and (not diseasterRevealed):
                 print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
                 diseasterRevealed = True
-#Choose random action
+#Choose r.randint action
 def ChooseAction(diseasterRevealed):
 
     if not diseasterRevealed:
