@@ -1,16 +1,5 @@
 {
     "disasters": [
-        "Volcanoe Eruption",
-        "Tsunami",
-        "Earthquake",
-        "Tornado",
-        "Asteroid",
-        "Great Deppression",
-        "Super Storm",
-        "Blizzard"
-    ],
-
-    "disastersNew": [
         {
             "name": "Volcanic Eruption",
             "warnings": ["see smoke rising in the distance"],

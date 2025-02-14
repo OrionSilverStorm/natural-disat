@@ -5,32 +5,8 @@ import json
 #open json file
 data = json.load(open("data.json", "r"))
 
-naturalDisDeaths = [["suffocates from the smoke in the air", "tried to swim in lava"],
-                                        ["drowns"],
-                                        ["falls into the cracks of the Earth"],
-                                        ["gets yeeted into oblivion by the strong winds"],
-                                        ["gets pummeled by an asteriod"],
-                                        ["dies of regret due to stock market crash"],
-                                        ["gets shazamed by lightning"],
-                                        ["dies of frostbite"]]
-
-diseasterSigns = [["see smoke rising in the distance"],
-                                    ["sees the water recceding", "notices a lack of animals"],
-                                    ["feels some shaking", "sees animals freaking out"],
-                                    ["can see strong winds in the horizon", "sees a lack of birds"],
-                                    ["sees a flashing light in the sky"],
-                                    ["sees many frantic people in suits panicking"],
-                                    ["hears a distant boom"],
-                                    ["starts to see its snowing"]]
-
-hiderList = ["Eris", "Agnes", "Artem", "Luca", "Burney", "Rhodrigo", "Ussop"]
-explorerList =["Shiven", "Jacob", "Joe", "Zach", "Xavi", "the Ki-high-ye-on", "Luffy"]
-fighterList = ["Lucas", "Felix", "Jospeh", "Harry", "Libby", "Beth", "Sung Jin-Woo", "Zoro"]
-
-
 # init vars
 totalPlayerList = []
-currentDiseaster = ""
 contInput = True
 contValidation = True
 contMain = True
@@ -55,13 +31,11 @@ match currentMap:
                 currentDiseaster = "Great Deppression" # this won't work
         #else just like base case
         else:
-            currentDiseaster = r.choice(data["disasters"])
-            disaster = r.choice(data["disastersNew"])
+            disaster = r.choice(data["disasters"])
 
     #base case
     case _:
-        currentDiseaster = r.choice(data["disasters"])
-        disaster = r.choice(data["disastersNew"])
+        disaster = r.choice(data["disasters"])
 
 #player actions for each alignement
 def PlayerAction(alignmentList, alignmentActions):    
@@ -96,14 +70,14 @@ def Death(deathType, victim, deathMessage, killer):
         print(victim + " " + r.choice(data["suicides"]))
 
     #search to find which faction list the victim is in and removes him
-    if victim in hiderList:
-            hiderList.remove(victim)
+    if victim in data["hiderList"]:
+            data["hiderList"].remove(victim)
 
-    elif victim in fighterList:
-            fighterList.remove(victim)
+    elif victim in data["fighterList"]:
+            data["fighterList"].remove(victim)
 
-    elif victim in explorerList:
-            explorerList.remove(victim)
+    elif victim in data["explorerList"]:
+            data["explorerList"].remove(victim)
 
     else:
         print("FACTION NOT FOUND")    
@@ -131,13 +105,13 @@ def ChooseAction(diseasterRevealed):
         #if list not 0 do the chosen action
         #hide player actions
         case 1:
-            if len(hiderList) != 0: PlayerAction(hiderList, data["hiderActions"])
+            if len(data["hiderList"]) != 0: PlayerAction(data["hiderList"], data["hiderActions"])
         #explore player
         case 2:
-            if len(explorerList) != 0: PlayerAction(explorerList, data["explorerActions"])
+            if len(data["explorerList"]) != 0: PlayerAction(data["explorerList"], data["explorerActions"])
         #rampagers
         case 3:
-            if len(fighterList) != 0: PlayerAction(fighterList, data["fighterActions"])
+            if len(data["fighterList"]) != 0: PlayerAction(data["fighterList"], data["fighterActions"])
 
         #socail interactions
         case 4:
@@ -183,18 +157,18 @@ while contInput:
     if playerInput != "":
         match pAlignment:
             case 1:
-                hiderList.append(playerInput)
+                data["hiderList"].append(playerInput)
             case 2:
-                explorerList.append(playerInput)
+                data["explorerList"].append(playerInput)
             case 3:
-                fighterList.append(playerInput)
+                data["fighterList"].append(playerInput)
 
 #init total player list
-for item in hiderList:
+for item in data["hiderList"]:
     totalPlayerList.append(item)
-for item in fighterList:
+for item in data["fighterList"]:
     totalPlayerList.append(item)
-for item in explorerList:
+for item in data["explorerList"]:
     totalPlayerList.append(item)
 
 print(f"\nSite:{currentMap}\nDisaster Unkown\n")
@@ -209,13 +183,13 @@ while contMain:
             winner = totalPlayerList[0]
 
                 #search to find which faction list the victim is in and removes him
-            if winner in hiderList:
+            if winner in data["hiderList"]:
                     winnerFactionOrigin = "the hider"
 
-            elif winner in fighterList:
+            elif winner in data["fighterList"]:
                     winnerFactionOrigin = "the fighter"
 
-            elif winner in explorerList:
+            elif winner in data["explorerList"]:
                     winnerFactionOrigin = "the explorer"
 
             print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {currentMap}\nWINNER:{totalPlayerList[0]} {winnerFactionOrigin}")
@@ -228,23 +202,23 @@ while contMain:
         if command[0] == "/Revive":
                 totalPlayerList.append(command[2])     
                 if command[1] == "hider":
-                        hiderList.append(command[2])
+                        data["hiderList"].append(command[2])
 
                 if command[1] == "fighter":
-                        fighterList.append(command[2])
+                        data["fighterList"].append(command[2])
                         
                 if command[1] == "explorer":
-                        hiderList.append(command[2])
+                        data["hiderList"].append(command[2])
                 print(f"{command[3]} has been revivied")
 
         elif command[0] == "/kill":
                 totalPlayerList.remove(command[2])     
                 if command[1] == "hider":
-                        hiderList.remove(command[2])
+                        data["hiderList"].remove(command[2])
 
                 if command[1] == "fighter":
-                        fighterList.remove(command[2])
+                        data["fighterList"].remove(command[2])
                         
                 if command[1] == "explorer":
-                        hiderList.remove(command[2])
+                        data["hiderList"].remove(command[2])
                 print(f"{command[3]} has been killed")
