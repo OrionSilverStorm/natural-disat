@@ -1,10 +1,10 @@
 import random
 import json
-from funcs import *
 
 #---------------------------------------------------------------------------------------------------------Read in json
 #open json file
 data = json.load(open("data.json", "r"))
+players = [Player(i, "hider") for i in data["hiderList"]] + [Player(i, "explorer") for i in data["explorerList"]] + [Player(i, "fighter") for i in data["fighterList"]]
 
 # init vars
 totalPlayerList = []
@@ -16,6 +16,30 @@ currentMap = random.choice(data["maps"])
 diseasterRevealed = False
 
 #-----------------------------------------------------------------------------------------------------------------FUNC
+
+class Player:
+    def __init__(self, name, alignment):
+        self.name = name
+        self.alignment = alignment
+    
+    def action(self):
+        print(f"{self.name} {random.choice(data[self.alignment + "Actions"])}")
+    
+    def socialise(self, other):
+        if self == other:
+            print(f"{self.name} {random.choice(data["hallucinations"])}")
+        else:
+            print(f"{self.name} {random.choice(data["socailInteractions"])} {other.name}")
+    
+    def kill(self, other):
+        if other == None: # death specific to disaster
+            # TODO check if disaster revealed
+            print(f"{self.name} {random.choice(disaster["deaths"])}")
+        elif self == other: # self death
+            print(f"{self.name} {random.choice(data["suicides"])}")
+        else: # player kills other player
+            print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
+        
 
 def choseDisaster(map: str) -> dict:
     if random.randint(0, 100)>= 50:# probability of map specific disaster
@@ -87,7 +111,7 @@ def AnnounceDiseaster():
                 print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
                 diseasterRevealed = True
                 
-#Choose random.randint action
+#Choose random action
 def ChooseAction(diseasterRevealed):
 
     if not diseasterRevealed:
@@ -140,7 +164,6 @@ while contInput:
     playerInput = str(input("Enter new Player name(Enter to quit): "))
 
     if playerInput == "":
-        print("\nPRESS ENTER TO CONTINUE\n")
         contInput = False
         contValidation = False
 
@@ -166,12 +189,7 @@ while contInput:
                 data["fighterList"].append(playerInput)
 
 #init total player list
-for item in data["hiderList"]:
-    totalPlayerList.append(item)
-for item in data["fighterList"]:
-    totalPlayerList.append(item)
-for item in data["explorerList"]:
-    totalPlayerList.append(item)
+totalPlayerList = data["hiderList"] + data["fighterList"] + data["explorerList"]
 
 print(f"\nSite:{currentMap}\nDisaster Unkown\n")
 
