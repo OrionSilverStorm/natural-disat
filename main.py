@@ -126,7 +126,7 @@ while not gameWon:
         else:
             #ChooseAction(diseasterRevealed)
             # chech if disaster is revealed and if not maybe reveal it
-            if not diseasterRevealed and (random.randint(0,100) > 100 or len(players) < 5):
+            if not diseasterRevealed and (random.randint(0,100) > 95 or len(players) < 5):
                 #if rng or player list is low
                 print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
                 diseasterRevealed = True
