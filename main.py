@@ -216,5 +216,5 @@ while not gameWon:
                 for i in players: print(f"\t{i.name} the {i.alignment}")
             
             case _:
-                # enterd command is invalid
+                # entered command is invalid
                 print(f"{RED}\tERROR: invalid command, use /help for help{END}")
