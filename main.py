@@ -25,10 +25,7 @@ class Player:
     
     def action(self):
         # make a single player (the calling object) do an action
-        print(f"{self.name} {random.choice(data[self.alignment + "Actions"])}")
-        #                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
-        # this gets the players alignment and appends "Actions" to it to get the list of actions for that alignment
-        # then it chooses a random action from that list
+        print(f"{self.name} {random.choice(data["actions"][self.alignment])}")
     
     def socialise(self, other):
         # make a player (the calling object) socialise with another player (the "other" object)
