@@ -45,7 +45,7 @@ class Player:
         else:
             # show sign of disaster
             print(f"{random.choice(totalPlayerList)} {random.choice(disaster["warnings"])}")
-        
+
 
 def choseDisaster(map: str) -> dict:
     if random.randint(0, 100)>= 50:# probability of map specific disaster
