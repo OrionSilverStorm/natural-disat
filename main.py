@@ -1,15 +1,6 @@
 import random
 import json
 
-#---------------------------------------------------------------------------------------------------------Read in json
-#open json file
-data = json.load(open("data.json", "r"))
-
-#choose current map
-currentMap = random.choice(data["maps"])
-diseasterRevealed = False
-
-#-----------------------------------------------------------------------------------------------------------------FUNCy code
 class Player: pass # stops python complaining about type hinting
 class Player:
     def __init__(self, name: str, alignment: str) -> None:
@@ -40,6 +31,7 @@ class Player:
             print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
         
         # remove the other playe from the list of players
+        # other is always killed, even if self = other
         players.remove(other)
     
     def disasterEfect(self) -> None:
@@ -47,9 +39,13 @@ class Player:
         if diseasterRevealed:
             # kill someone with the disaster specific deaths
             print(f"{self.name} {random.choice(disaster["deaths"])}")
+            players.remove(self)
         else:
             # show sign of disaster
             print(f"{self.name} {random.choice(disaster["warnings"])}")
+
+#open json file
+data = json.load(open("data.json", "r"))
 
 # creates player objects based on json data
 players = [Player(i["name"], i["alignment"]) for i in data["players"]] # alive players
@@ -57,21 +53,19 @@ allPlayers = players.copy() # all players that have ever existed
 #                   ^^^^^^^
 # use .copy() because by default it is only copied by reference
 
+# randomly choose current map
+map = random.choice(list(data["maps"].items()))# TODO json change
+# turn the map back into a dictionary
+map = {"name": map[0], "RelativeDisasterProbabilities": map[1]}
+
+
 # set the disaster
 # TODO relative probabilities from json
-if random.randint(0, 100)>= 50:# probability of map specific disaster
-    match map:
-        case "London":
-            disaster = [i for i in data["disasters"] if i["name"] == "Great Deppression"]
-
-        #base case
-        case _:
-            disaster = random.choice(data["disasters"])
-else:
-    disaster = random.choice(data["disasters"])
+disaster = random.choice(data["disasters"])
 
 
 # main game loop ==============================================================================================================================
+diseasterRevealed = False
 print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\n ")
 
 # get extra players
@@ -113,7 +107,7 @@ while contInput:
         # this makes sure the new player object has the correct alignment
 
 
-print(f"\nSite:{currentMap}\nDisaster Unkown\n")
+print(f"\nSite:{map["name"]}\nDisaster Unkown\n")
 
 gameWon = False
 while not gameWon:
@@ -125,7 +119,7 @@ while not gameWon:
         if len(players) == 1:
             # check if there is only one player left
             # if there is print the winner and stop the game
-            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {currentMap}\nWINNER:{players[0].name} the {players[0].alignment}")
+            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {map["name"]}\nWINNER:{players[0].name} the {players[0].alignment}")
             gameWon = True
             
         else:

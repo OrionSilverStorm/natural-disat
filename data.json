@@ -71,15 +71,45 @@
         }
     ],
 
-    "maps": [
-        "Mount Everest",
-        "London",
-        "Antractica",
-        "Amazon Rainforest",
-        "Atlantis",
-        "Mars",
-        "The Moon"
-    ],
+    "maps": {
+        "Mount Everest": {
+            "RelativeDisasterProbabilities": {
+                "Blizzard": 10
+            }
+        },
+        "London": {
+            "RelativeDisasterProbabilities": {
+                "Great Deppression": 10
+            }
+        },
+        "Antractica": {
+            "RelativeDisasterProbabilities": {
+                "Blizzard": 10
+            }
+        },
+        "Amazon Rainforest": {
+            "RelativeDisasterProbabilities": {
+
+            }
+        },
+        "Atlantis": {
+            "RelativeDisasterProbabilities": {
+                "Tsunami": 0
+            }
+        },
+        "Mars": {
+            "RelativeDisasterProbabilities": {
+                "Asteroid": 10,
+                "Tsunami": 0
+            }
+        },
+        "The Moon": {
+            "RelativeDisasterProbabilities": {
+                "Asteroid": 10,
+                "Tsunami": 0
+            }
+        }
+    },
 
     "players": [
         {
