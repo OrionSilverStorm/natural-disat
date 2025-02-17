@@ -1,5 +1,6 @@
 import random
 import json
+from colours import *
 
 class Player: pass # stops python complaining about type hinting
 class Player:
@@ -162,10 +163,10 @@ while not gameWon:
         match command[0]:
             case "/help":
                 # display options
-                print("/kill <name>\n\tkills a player")
-                print("/revive <name>\n\trevives a player")
-                print("/create <name> <alignment>\n\tadds a new player")
-                print("/players\n\tlists currently alive players")
+                print(f"/kill {YELLOW}<name>{END}\n\tkills a player")
+                print(f"/revive {YELLOW}<name>{END}\n\trevives a player")
+                print(f"/create {YELLOW}<name>{END} {YELLOW}<alignment>{END}\n\tadds a new player")
+                print(f"/players\n\tlists currently alive players")
             
             case "/kill":
                 found = False
@@ -173,48 +174,47 @@ while not gameWon:
                     # if players name matches input
                     if players[i].name == command[1]:
                         # remove from players list
+                        print(f"\t{YELLOW}{players[i].name}{END} the {YELLOW}{players[i].alignment}{END} was killed")
                         del[players[i]]
                         found = True
                         break
                         
-                if found:
-                    print(f"\t{command[1]} was killed")
-                else:
+                if not found:
                     # no players removed
-                    print("\tERROR: player not found")
+                    print(f"{RED}\tERROR: player not found{END}")
             
             case "/revive":
                 # add player back to list
                 # check if player name exists
-                if command[1] in allPlayers:
+                if command[1] in [i.name for i in allPlayers]:
                     # player exists (but may be alive or dead)
                     if command[1] in [i.name for i in players]:
                         # player is already in the game and alive
-                        print("\tERROR: player is already alive")
+                        print(f"{RED}\tERROR: player is already alive{END}")
                     else:
                         # player is not alive and exists
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
-                        print(f"\t{players[-1].name} the {players[-1].alignment} has been revived")
+                        print(f"\t{YELLOW}{players[-1].name}{END} the {YELLOW}{players[-1].alignment}{END} has been revived")
                 else:
-                    print("\tERROR: player does not exist, to create a new player use /create")
+                    print(f"{RED}\tERROR: player does not exist, to create a new player use /create{END}")
             
             case "/create":
                 if command[1] in allPlayers:
                     # player exists
-                    print("\tERROR: player already exists")
+                    print(f"{RED}\tERROR: player already exists{END}")
                 else:
                     # attempt to add a new player
                     if command[2] not in ["hider", "explorer", "fighter"]:
                         # alignment is invalid
-                        print("\tERROR: invalid alignment")
+                        print(f"{RED}\tERROR: invalid alignment{END}")
                     else:
                         #valid name & alignment
                         players.append(Player(command[1], command[2]))
-                        print(f"{players[-1].name} the {players[-1].alignment} has been created")
+                        print(f"{YELLOW}{players[-1].name}{END} the {YELLOW}{players[-1].alignment}{END} has been created")
             
             case "/players":
                 for i in players: print(f"\t{i.name} the {i.alignment}")
             
             case _:
                 # enterd command is invalid
-                print("\tinvalid command, use /help for help")
+                print(f"{RED}\tERROR: invalid command, use /help for help{END}")
