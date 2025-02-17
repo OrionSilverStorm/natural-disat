@@ -51,7 +51,10 @@ class Player:
             # show sign of disaster
             print(f"{self.name} {random.choice(disaster["warnings"])}")
 
-players = [Player(i["name"], i["alignment"]) for i in data["players"]]
+players = [Player(i["name"], i["alignment"]) for i in data["players"]] # alive players
+allPlayers = players.copy() # all players that have ever existed
+#                   ^^^^^^^
+# use .copy() because by default it is only copied by reference
 
 def choseDisaster(map: str) -> dict:
     if random.randint(0, 100)>= 50:# probability of map specific disaster
@@ -108,7 +111,8 @@ while contInput:
                     # user entered a number that is not in the valid range
                     print("Wrong range of values")
         
-        # add the player to the list of players
+        # add the player to the list of players and list of all players
+        allPlayers.append(Player(playerName, ["hider", "explorer", "fighter"][alignment-1]))
         players.append(Player(playerName, ["hider", "explorer", "fighter"][alignment-1]))
         #                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         # this is a list of the possible alignments, and the user's input is used to choose one of them
@@ -123,6 +127,7 @@ while not gameWon:
     userInput = input()
 
     if userInput == "":
+        # if no command is entered, continue the game
 
         if len(players) == 1:
             # check if there is only one player left
@@ -159,28 +164,58 @@ while not gameWon:
                     random.choice(players).kill(random.choice(players))
     
     else:
-        # TODO
+        # command entered
+        # tokenise command
         command = userInput.split(" ")
-        if command[0] == "/Revive":
-                totalPlayerList.append(command[2])     
-                if command[1] == "hider":
-                        data["hiderList"].append(command[2])
-
-                if command[1] == "fighter":
-                        data["fighterList"].append(command[2])
+        # options are /kill, /revive, /help, /createPlayer
+        match command[0]:
+            case "/help":
+                # display options
+                print("/kill <name>\n    kills a player")
+                print("/revive <name>\n    revives a player")
+                print("/create <name> <alignment>\n    adds a new player")
+            
+            case "/kill":
+                found = False
+                for i in range(len(players)):
+                    # if players name matches input
+                    if players[i].name == command[1]:
+                        # remove from players list
+                        del[players[i]]
+                        found = True
                         
-                if command[1] == "explorer":
-                        data["hiderList"].append(command[2])
-                print(f"{command[3]} has been revivied")
-
-        elif command[0] == "/kill":
-                totalPlayerList.remove(command[2])     
-                if command[1] == "hider":
-                        data["hiderList"].remove(command[2])
-
-                if command[1] == "fighter":
-                        data["fighterList"].remove(command[2])
-                        
-                if command[1] == "explorer":
-                        data["hiderList"].remove(command[2])
-                print(f"{command[3]} has been killed")
+                if not found:
+                    # no players removed
+                    print("ERROR: player not found")
+            
+            case "/revive":
+                # add player back to list
+                # check if player name exists
+                if command[1] in allPlayers:
+                    # player exists (but may be alive or dead)
+                    if command[1] in [i.name for i in players]:
+                        # player is already in the game and alive
+                        print("ERROR: player is already alive")
+                    else:
+                        # player is not alive and exists
+                        players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
+                        print(f"{players[-1].name} has been revived")
+                else:
+                    print("ERROR: player does not exist, to create a new player use /create")
+            
+            case "/create":
+                if command[1] in allPlayers:
+                    # player exists
+                    print("ERROR: player already exists")
+                else:
+                    # attempt to add a new player
+                    if command[2] not in ["hider", "explorer", "fighter"]:
+                        # alignment is invalid
+                        print("ERROR: invalid alignment")
+                    else:
+                        #valid name & alignment
+                        players.append(Player(command[1], command[2]))
+            
+            case _:
+                # enterd command is invalid
+                print("invalid command, use /help for help")
