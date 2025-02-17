@@ -50,7 +50,10 @@ data = json.load(open("data.json", "r"))
 
 # creates player objects based on json data
 players = [Player(i["name"], i["alignment"]) for i in data["players"]] # alive players
-allPlayers = players.copy() # all players that have ever existed
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#          creates player object for each entry in the json list
+
+allPlayers = players.copy() # all players that have ever existed, used with /revive and /create
 #                   ^^^^^^^
 # use .copy() because by default it is only copied by reference
 
@@ -155,13 +158,14 @@ while not gameWon:
         # command entered
         # tokenise command
         command = userInput.split(" ")
-        # options are /kill, /revive, /help, /createPlayer
+        # options are /kill, /revive, /help, /create
         match command[0]:
             case "/help":
                 # display options
-                print("/kill <name>\n    kills a player")
-                print("/revive <name>\n    revives a player")
-                print("/create <name> <alignment>\n    adds a new player")
+                print("/kill <name>\n\tkills a player")
+                print("/revive <name>\n\trevives a player")
+                print("/create <name> <alignment>\n\tadds a new player")
+                print("/players\n\tlists currently alive players")
             
             case "/kill":
                 found = False
@@ -171,10 +175,13 @@ while not gameWon:
                         # remove from players list
                         del[players[i]]
                         found = True
+                        break
                         
-                if not found:
+                if found:
+                    print(f"\t{command[1]} was killed")
+                else:
                     # no players removed
-                    print("ERROR: player not found")
+                    print("\tERROR: player not found")
             
             case "/revive":
                 # add player back to list
@@ -183,27 +190,31 @@ while not gameWon:
                     # player exists (but may be alive or dead)
                     if command[1] in [i.name for i in players]:
                         # player is already in the game and alive
-                        print("ERROR: player is already alive")
+                        print("\tERROR: player is already alive")
                     else:
                         # player is not alive and exists
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
-                        print(f"{players[-1].name} has been revived")
+                        print(f"\t{players[-1].name} the {players[-1].alignment} has been revived")
                 else:
-                    print("ERROR: player does not exist, to create a new player use /create")
+                    print("\tERROR: player does not exist, to create a new player use /create")
             
             case "/create":
                 if command[1] in allPlayers:
                     # player exists
-                    print("ERROR: player already exists")
+                    print("\tERROR: player already exists")
                 else:
                     # attempt to add a new player
                     if command[2] not in ["hider", "explorer", "fighter"]:
                         # alignment is invalid
-                        print("ERROR: invalid alignment")
+                        print("\tERROR: invalid alignment")
                     else:
                         #valid name & alignment
                         players.append(Player(command[1], command[2]))
+                        print(f"{players[-1].name} the {players[-1].alignment} has been created")
+            
+            case "/players":
+                for i in players: print(f"\t{i.name} the {i.alignment}")
             
             case _:
                 # enterd command is invalid
-                print("invalid command, use /help for help")
+                print("\tinvalid command, use /help for help")
