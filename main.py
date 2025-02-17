@@ -19,29 +19,40 @@ diseasterRevealed = False
 
 class Player:
     def __init__(self, name, alignment):
+        # create a player with a name and alignment
         self.name = name
         self.alignment = alignment
     
     def action(self):
+        # make a single player (the calling object) do an action
         print(f"{self.name} {random.choice(data[self.alignment + "Actions"])}")
+        #                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        # this gets the players alignment and appends "Actions" to it to get the list of actions for that alignment
+        # then it chooses a random action from that list
     
     def socialise(self, other):
+        # make a player (the calling object) socialise with another player (the "other" object)
         if self == other:
+            # if it is the same player, do a hallucination
             print(f"{self.name} {random.choice(data["hallucinations"])}")
         else:
+            # otherwise, do a normal social interaction
             print(f"{self.name} {random.choice(data["socailInteractions"])} {other.name}")
     
     def kill(self, other):
-        # have the caller kill another person
-        if self == other: # self death
+        # have the calling object kill another player
+        if self == other:
+            # if it is the same player, do a sucide
             print(f"{self.name} {random.choice(data["suicides"])}")
-        else: # player kills other player
+        else:
+            # calling player kills other player
             print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
         
-        # remove the other player from the list
+        # remove the other playe from the list of players
         players.remove(other)
     
     def disasterEfect(self):
+        # check if the disaster is revealed
         if diseasterRevealed:
             # kill someone with the disaster specific deaths
             print(f"{self.name} {random.choice(disaster["deaths"])}")

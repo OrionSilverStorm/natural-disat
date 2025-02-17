@@ -2,36 +2,72 @@
     "disasters": [
         {
             "name": "Volcanic Eruption",
-            "warnings": ["see smoke rising in the distance"],
-            "deaths": ["suffocates from the smoke in the air", "tried to swim in lava"]
+            "warnings": [
+                "see smoke rising in the distance"
+            ],
+            "deaths": [
+                "suffocates from the smoke in the air",
+                "tried to swim in lava"
+            ]
         },{
             "name": "Tsunami",
-            "warnings": ["sees the water recceding", "notices a lack of animals"],
-            "deaths": ["drowns"]
+            "warnings": [
+                "sees the water recceding",
+                "notices a lack of animals"
+            ],
+            "deaths": [
+                "drowns"
+            ]
         },{
             "name": "Earthquake",
-            "warnings": ["feels some shaking", "sees animals freaking out"],
-            "deaths": ["falls into the cracks of the Earth"]
+            "warnings": [
+                "feels some shaking",
+                "sees animals freaking out"
+            ],
+            "deaths": [
+                "falls into the cracks of the Earth"
+            ]
         },{
             "name": "Tornado",
-            "warnings": ["can see strong winds in the horizon", "sees a lack of birds"],
-            "deaths": ["gets yeeted into oblivion by the strong winds"]
+            "warnings": [
+                "can see strong winds in the horizon",
+                "sees a lack of birds"
+            ],
+            "deaths": [
+                "gets yeeted into oblivion by the strong winds"
+            ]
         },{
             "name": "Asteroid",
-            "warnings": ["sees a flashing light in the sky"],
-            "deaths": ["gets pummeled by an asteriod"]
+            "warnings": [
+                "sees a flashing light in the sky"
+            ],
+            "deaths": [
+                "gets pummeled by an asteriod"
+            ]
         },{
             "name": "Great Deppression",
-            "warnings": ["sees many frantic people in suits panicking"],
-            "deaths": ["dies of regret due to stock market crash"]
+            "warnings": [
+                "sees many frantic people in suits panicking"
+            ],
+            "deaths": [
+                "dies of regret due to stock market crash"
+            ]
         },{
             "name": "Super Storm",
-            "warnings": ["hears a distant boom"],
-            "deaths": ["gets shazamed by lightning"]
+            "warnings": [
+                "hears a distant boom"
+            ],
+            "deaths": [
+                "gets shazamed by lightning"
+            ]
         },{
             "name": "Blizzard",
-            "warnings": ["starts to see its snowing"],
-            "deaths": ["dies of frostbite"]
+            "warnings": [
+                "starts to see its snowing"
+            ],
+            "deaths": [
+                "dies of frostbite"
+            ]
         }
     ],
 
