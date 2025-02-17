@@ -4,7 +4,7 @@ import json
 #---------------------------------------------------------------------------------------------------------Read in json
 #open json file
 data = json.load(open("data.json", "r"))
-players = [Player(i, "hider") for i in data["hiderList"]] + [Player(i, "explorer") for i in data["explorerList"]] + [Player(i, "fighter") for i in data["fighterList"]]
+###players = [Player(i, "hider") for i in data["hiderList"]] + [Player(i, "explorer") for i in data["explorerList"]] + [Player(i, "fighter") for i in data["fighterList"]]
 
 # init vars
 totalPlayerList = []
@@ -55,13 +55,13 @@ def choseDisaster(map: str) -> dict:
     
     return disaster
 
-def PlayerAction(alignmentList, alignmentActions):    
+def PlayerAction(alignment):# updataed to take just one argument (the alignment) and use that to find players / actions
     #choose p1
-    player = random.choice(alignmentList)
+    player = random.choice(data[alignment + "List"])
 
-    if len(alignmentList) != 0:        
+    if len(data[alignment + "List"]) != 0:        
         #pick a player and their respective alignment action
-        print(f"{player} {random.choice(alignmentActions)}")
+        print(f"{player} {random.choice(data[alignment + "Actions"])}")
 
 def PlayerSocailInteractions():
     player1 = random.choice(totalPlayerList)
@@ -123,13 +123,13 @@ def ChooseAction(diseasterRevealed):
         #if list not 0 do the chosen action
         #hide player actions
         case 1:
-            if len(data["hiderList"]) != 0: PlayerAction(data["hiderList"], data["hiderActions"])
+            if len(data["hiderList"]) != 0: PlayerAction("hider")
         #explore player
         case 2:
-            if len(data["explorerList"]) != 0: PlayerAction(data["explorerList"], data["explorerActions"])
+            if len(data["explorerList"]) != 0: PlayerAction("explorer")
         #rampagers
         case 3:
-            if len(data["fighterList"]) != 0: PlayerAction(data["fighterList"], data["fighterActions"])
+            if len(data["fighterList"]) != 0: PlayerAction("fighter")
 
         #socail interactions
         case 4:
