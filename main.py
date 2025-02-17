@@ -4,13 +4,7 @@ import json
 #---------------------------------------------------------------------------------------------------------Read in json
 #open json file
 data = json.load(open("data.json", "r"))
-###players = [Player(i, "hider") for i in data["hiderList"]] + [Player(i, "explorer") for i in data["explorerList"]] + [Player(i, "fighter") for i in data["fighterList"]]
 
-# init vars
-totalPlayerList = []
-contInput = True
-contValidation = True
-contMain = True
 #choose current map
 currentMap = random.choice(data["maps"])
 diseasterRevealed = False
@@ -81,49 +75,54 @@ def choseDisaster(map: str) -> dict:
 
 disaster = choseDisaster(currentMap)
 
-#player actions for each alignement
+# main game loop ==============================================================================================================================
+print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\n ")
 
-#-----------------------------
-print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\nEnter the players:\n ")
-playerInput = ""
+# get extra players
+contInput = True
 while contInput:
-    playerInput = str(input("Enter new Player name(Enter to skip entering extra people): "))
+    # get a player name from the user
+    playerName = str(input("Enter extra Player name (Enter to skip entering extra people): "))
 
-    if playerInput == "":
+    # if the user enters nothing, stop asking for more players
+    if playerName == "":
         contInput = False
-        contValidation = False
-
-    #input validation
-    while contValidation:
-        try:
-            pAlignment = int(input("\nWhat is you goal? (1 to hide, 2 to explore, 3 to rampage): "))
-        except ValueError:
-            print("Please be aware of the existence of numbers and/or proper literacy, kindly retry")
-        else:
-            if int(pAlignment) < 1 or int(pAlignment) > 3:
-                print("Wrong range of values")
+        
+    else:
+        # attempt to add a new player
+        inputValid = False
+        while not inputValid:
+            # try to get the player's alignment
+            try:
+                # get user input
+                alignment = int(input("\nWhat is you goal? (1 to hide, 2 to explore, 3 to rampage): "))
+            except ValueError:
+                # user entered something that is not a number
+                print("Please be aware of the existence of numbers and/or proper literacy, kindly retry")
             else:
-                contValidation = False
+                # user entered a number
+                if 1 <= alignment <= 3:
+                    # user entered a valid number
+                    inputValid = True
+                else:
+                    # user entered a number that is not in the valid range
+                    print("Wrong range of values")
+        
+        # add the player to the list of players
+        players.append(Player(playerName, ["hider", "explorer", "fighter"][alignment-1]))
+        #                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        # this is a list of the possible alignments, and the user's input is used to choose one of them
+        # we subtract 1 from the alignment because the list is 0-indexed, but the user's input is 1-indexed
+        # this makes sure the new player object has the correct alignment
 
-    if playerInput != "":
-        match pAlignment:
-            case 1:
-                data["hiderList"].append(playerInput)
-            case 2:
-                data["explorerList"].append(playerInput)
-            case 3:
-                data["fighterList"].append(playerInput)
-
-# init total player list
-#totalPlayerList = data["hiderList"] + data["fighterList"] + data["explorerList"]
 
 print(f"\nSite:{currentMap}\nDisaster Unkown\n")
 
 gameWon = False
 while not gameWon:
-    usrInput = input()
+    userInput = input()
 
-    if usrInput == "":
+    if userInput == "":
 
         if len(players) == 1:
             # check if there is only one player left
@@ -160,7 +159,8 @@ while not gameWon:
                     random.choice(players).kill(random.choice(players))
     
     else:
-        command = usrInput.split(" ")
+        # TODO
+        command = userInput.split(" ")
         if command[0] == "/Revive":
                 totalPlayerList.append(command[2])     
                 if command[1] == "hider":
