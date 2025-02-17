@@ -11,7 +11,7 @@ diseasterRevealed = False
 
 #-----------------------------------------------------------------------------------------------------------------FUNC
 
-class Player:
+class Player: # TODO type hinting
     def __init__(self, name, alignment):
         # create a player with a name and alignment
         self.name = name
@@ -57,6 +57,7 @@ allPlayers = players.copy() # all players that have ever existed
 # use .copy() because by default it is only copied by reference
 
 def choseDisaster(map: str) -> dict:
+    # TODO relative probabilities from json
     if random.randint(0, 100)>= 50:# probability of map specific disaster
         match map:
             case "London":
