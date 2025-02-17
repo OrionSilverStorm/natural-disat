@@ -44,6 +44,7 @@ class Player:
             # show sign of disaster
             print(f"{self.name} {random.choice(disaster["warnings"])}")
 
+# initialise the game =========================================================================================================================
 #open json file
 data = json.load(open("data.json", "r"))
 
