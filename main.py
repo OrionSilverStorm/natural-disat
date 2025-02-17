@@ -9,19 +9,19 @@ data = json.load(open("data.json", "r"))
 currentMap = random.choice(data["maps"])
 diseasterRevealed = False
 
-#-----------------------------------------------------------------------------------------------------------------FUNC
-
-class Player: # TODO type hinting
-    def __init__(self, name, alignment):
+#-----------------------------------------------------------------------------------------------------------------FUNCy code
+class Player: pass # stops python complaining about type hinting
+class Player:
+    def __init__(self, name: str, alignment: str) -> None:
         # create a player with a name and alignment
         self.name = name
         self.alignment = alignment
     
-    def action(self):
+    def action(self) -> None:
         # make a single player (the calling object) do an action
         print(f"{self.name} {random.choice(data["actions"][self.alignment])}")
     
-    def socialise(self, other):
+    def socialise(self, other: Player) -> None:
         # make a player (the calling object) socialise with another player (the "other" object)
         if self == other:
             # if it is the same player, do a hallucination
@@ -30,7 +30,7 @@ class Player: # TODO type hinting
             # otherwise, do a normal social interaction
             print(f"{self.name} {random.choice(data["socailInteractions"])} {other.name}")
     
-    def kill(self, other):
+    def kill(self, other: Player) -> None:
         # have the calling object kill another player
         if self == other:
             # if it is the same player, do a sucide
@@ -42,7 +42,7 @@ class Player: # TODO type hinting
         # remove the other playe from the list of players
         players.remove(other)
     
-    def disasterEfect(self):
+    def disasterEfect(self) -> None:
         # check if the disaster is revealed
         if diseasterRevealed:
             # kill someone with the disaster specific deaths
@@ -51,33 +51,25 @@ class Player: # TODO type hinting
             # show sign of disaster
             print(f"{self.name} {random.choice(disaster["warnings"])}")
 
+# creates player objects based on json data
 players = [Player(i["name"], i["alignment"]) for i in data["players"]] # alive players
 allPlayers = players.copy() # all players that have ever existed
 #                   ^^^^^^^
 # use .copy() because by default it is only copied by reference
 
-def choseDisaster(map: str) -> dict:
-    # TODO relative probabilities from json
-    if random.randint(0, 100)>= 50:# probability of map specific disaster
-        match map:
-            case "London":
-                disaster = [i for i in data["disasters"] if i["name"] == "Great Deppression"]
+# set the disaster
+# TODO relative probabilities from json
+if random.randint(0, 100)>= 50:# probability of map specific disaster
+    match map:
+        case "London":
+            disaster = [i for i in data["disasters"] if i["name"] == "Great Deppression"]
 
-            #base case
-            case _:
-                disaster = random.choice(data["disasters"])
-    else:
-        disaster = random.choice(data["disasters"])
-    
-    return disaster
+        #base case
+        case _:
+            disaster = random.choice(data["disasters"])
+else:
+    disaster = random.choice(data["disasters"])
 
-                
-
-# choose map, if specail map choose speacil diseaster
-# then get the disaster
-
-
-disaster = choseDisaster(currentMap)
 
 # main game loop ==============================================================================================================================
 print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\n ")
