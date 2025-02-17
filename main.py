@@ -37,6 +37,9 @@ class Player:
             print(f"{self.name} {random.choice(data["suicides"])}")
         else: # player kills other player
             print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
+        
+        # remove the other player from the list
+        players.remove(other)
     
     def disasterEfect(self):
         if diseasterRevealed:
@@ -44,8 +47,9 @@ class Player:
             print(f"{self.name} {random.choice(disaster["deaths"])}")
         else:
             # show sign of disaster
-            print(f"{random.choice(totalPlayerList)} {random.choice(disaster["warnings"])}")
+            print(f"{self.name} {random.choice(disaster["warnings"])}")
 
+players = [Player(i["name"], i["alignment"]) for i in data["players"]]
 
 def choseDisaster(map: str) -> dict:
     if random.randint(0, 100)>= 50:# probability of map specific disaster
@@ -61,99 +65,7 @@ def choseDisaster(map: str) -> dict:
     
     return disaster
 
-def PlayerAction(alignment):# updataed to take just one argument (the alignment) and use that to find players / actions
-    #choose p1
-    player = random.choice(data[alignment + "List"])
-
-    if len(data[alignment + "List"]) != 0:        
-        #pick a player and their respective alignment action
-        print(f"{player} {random.choice(data[alignment + "Actions"])}")
-
-def PlayerSocailInteractions():
-    player1 = random.choice(totalPlayerList)
-    player2 = random.choice(totalPlayerList)
-
-    #socail intercaction
-    print(f"{player1} {random.choice(data["socailInteractions"])} {player2}")
-
-    #check for player dups
-    if player1 == player2:
-        print(player1 + " " + random.choice(data["hallucinations"]))
-
-#death
-def Death(deathType, victim, deathMessage, killer):    
-    if deathType == "socail":
-        print(f"{victim} {deathMessage} {killer}")
-
-    elif deathType == "enviromental":
-        print(f"{victim} {deathMessage}")
-
-    #check for self oppsies
-    if victim == killer:
-        print(victim + " " + random.choice(data["suicides"]))
-
-    #search to find which faction list the victim is in and removes him
-    if victim in data["hiderList"]:
-            data["hiderList"].remove(victim)
-
-    elif victim in data["fighterList"]:
-            data["fighterList"].remove(victim)
-
-    elif victim in data["explorerList"]:
-            data["explorerList"].remove(victim)
-
-    else:
-        print("FACTION NOT FOUND")    
-
-    #remove from overall list
-    totalPlayerList.remove(victim)
-
-def AnnounceDiseaster():
-        global diseasterRevealed
-        diseasterRevealed = False
-        rng = random.randint(0,100)
-        #if rng or player list is low
-        if (rng > 100-5 or len(totalPlayerList) < 5) and (not diseasterRevealed):
-                print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
-                diseasterRevealed = True
                 
-#Choose random action
-def ChooseAction(diseasterRevealed):
-
-    if not diseasterRevealed:
-         AnnounceDiseaster()
-
-    list1 = [1,2,3,4,5,6]
-    action = random.choice(list1)
-    match action:
-        #if list not 0 do the chosen action
-        #hide player actions
-        case 1:
-            if len(data["hiderList"]) != 0: PlayerAction("hider")
-        #explore player
-        case 2:
-            if len(data["explorerList"]) != 0: PlayerAction("explorer")
-        #rampagers
-        case 3:
-            if len(data["fighterList"]) != 0: PlayerAction("fighter")
-
-        #socail interactions
-        case 4:
-            if len(totalPlayerList) != 0: PlayerSocailInteractions()
-
-        #diseaster deaths
-        case 5:
-            if diseasterRevealed:
-                # kill player
-                if len(totalPlayerList) != 0: Death("enviromental", random.choice(totalPlayerList), random.choice(disaster["deaths"]), None)
-            else:
-                # show signes of disaster
-                print(f"{random.choice(totalPlayerList)} {random.choice(disaster["warnings"])}")
-            
-
-        #player murder deaths
-        case 6:
-            if len(totalPlayerList) != 0: Death("socail", random.choice(totalPlayerList), random.choice(data["socailDeaths"]), random.choice(totalPlayerList))
 
 # choose map, if specail map choose speacil diseaster
 # then get the disaster
@@ -167,7 +79,7 @@ disaster = choseDisaster(currentMap)
 print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\nEnter the players:\n ")
 playerInput = ""
 while contInput:
-    playerInput = str(input("Enter new Player name(Enter to quit): "))
+    playerInput = str(input("Enter new Player name(Enter to skip entering extra people): "))
 
     if playerInput == "":
         contInput = False
@@ -194,37 +106,53 @@ while contInput:
             case 3:
                 data["fighterList"].append(playerInput)
 
-#init total player list
-totalPlayerList = data["hiderList"] + data["fighterList"] + data["explorerList"]
+# init total player list
+#totalPlayerList = data["hiderList"] + data["fighterList"] + data["explorerList"]
 
 print(f"\nSite:{currentMap}\nDisaster Unkown\n")
 
-while contMain:
-    ifEnter = input()
+gameWon = False
+while not gameWon:
+    usrInput = input()
 
-    if ifEnter == "":
+    if usrInput == "":
 
-        if len(totalPlayerList) == 1:
-            winnerFactionOrigin = ""
-            winner = totalPlayerList[0]
-
-                #search to find which faction list the victim is in and removes him
-            if winner in data["hiderList"]:
-                    winnerFactionOrigin = "the hider"
-
-            elif winner in data["fighterList"]:
-                    winnerFactionOrigin = "the fighter"
-
-            elif winner in data["explorerList"]:
-                    winnerFactionOrigin = "the explorer"
-
-            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {currentMap}\nWINNER:{totalPlayerList[0]} {winnerFactionOrigin}")
-            contMain = False
+        if len(players) == 1:
+            # check if there is only one player left
+            # if there is print the winner and stop the game
+            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {currentMap}\nWINNER:{players[0].name} the {players[0].alignment}")
+            gameWon = True
+            
         else:
-            ChooseAction(diseasterRevealed)
+            #ChooseAction(diseasterRevealed)
+            # chech if disaster is revealed and if not maybe reveal it
+            if not diseasterRevealed and (random.randint(0,100) > 100 or len(players) < 5):
+                #if rng or player list is low
+                print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
+                diseasterRevealed = True
+            
+            # choose action
+            match random.randint(1,6):
+                # make a normal action 3x more likely
+                case 1:
+                    random.choice(players).action()
+                case 2:
+                    random.choice(players).action()
+                case 3:
+                    random.choice(players).action()
+
+                #socail interactions
+                case 4:
+                    random.choice(players).socialise(random.choice(players))
+                #diseaster effects
+                case 5:
+                    random.choice(players).disasterEfect()
+                #player murder deaths
+                case 6:
+                    random.choice(players).kill(random.choice(players))
     
     else:
-        command = ifEnter.split(" ")
+        command = usrInput.split(" ")
         if command[0] == "/Revive":
                 totalPlayerList.append(command[2])     
                 if command[1] == "hider":

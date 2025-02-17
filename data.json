@@ -48,70 +48,70 @@
     "players": [
         {
             "name":"Eris",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Agnes",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Artem",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Luca",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Burney",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Rhodrigo",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Ussop",
-            "Alignment": "hider"
+            "alignment": "hider"
         },{
             "name":"Shiven",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"Jacob",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"Joe",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"Zach",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"Xavi",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"the Ki-high-ye-on",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
             "name":"Luffy",
-            "Alignment": "explorer"
+            "alignment": "explorer"
         },{
-            "Name": "Lucas",
-            "Alignment": "fighter"
+            "name": "Lucas",
+            "alignment": "fighter"
         },{
-            "Name": "Felix",
-            "Alignment": "fighter"
+            "name": "Felix",
+            "alignment": "fighter"
         },{
-            "Name": "Jospeh",
-            "Alignment": "fighter"
+            "name": "Jospeh",
+            "alignment": "fighter"
         },{
-            "Name": "Harry",
-            "Alignment": "fighter"
+            "name": "Harry",
+            "alignment": "fighter"
         },{
-            "Name": "Libby",
-            "Alignment": "fighter"
+            "name": "Libby",
+            "alignment": "fighter"
         },{
-            "Name": "Beth",
-            "Alignment": "fighter"
+            "name": "Beth",
+            "alignment": "fighter"
         },{
-            "Name": "Sung Jin-Woo",
-            "Alignment": "fighter"
+            "name": "Sung Jin-Woo",
+            "alignment": "fighter"
         },{
-            "Name": "Zoro",
-            "Alignment": "fighter"
+            "name": "Zoro",
+            "alignment": "fighter"
         }
     ],
     
@@ -216,37 +216,5 @@
         "has chosen the sweet relief of not exisiting anymore",
         "dipped a finger into the abyss and fell in",
         "thought self harm was the way to go"
-    ],
-
-    "hiderList": [
-        "Eris",
-        "Agnes",
-        "Artem",
-        "Luca",
-        "Burney",
-        "Rhodrigo",
-        "Ussop"
-    ],
-
-    "explorerList":[
-        "Shiven",
-        "Jacob",
-        "Joe",
-        "Zach",
-        "Xavi",
-        "the Ki-high-ye-on",
-        "Luffy"
-    ],
-
-    "fighterList": [
-        "Lucas",
-        "Felix",
-        "Jospeh",
-        "Harry",
-        "Libby",
-        "Beth",
-        "Sung Jin-Woo",
-        "Zoro"
     ]
-
 }
