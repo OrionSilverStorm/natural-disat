@@ -44,6 +44,76 @@
         "Mars",
         "The Moon"
     ],
+
+    "players": [
+        {
+            "name":"Eris",
+            "Alignment": "hider"
+        },{
+            "name":"Agnes",
+            "Alignment": "hider"
+        },{
+            "name":"Artem",
+            "Alignment": "hider"
+        },{
+            "name":"Luca",
+            "Alignment": "hider"
+        },{
+            "name":"Burney",
+            "Alignment": "hider"
+        },{
+            "name":"Rhodrigo",
+            "Alignment": "hider"
+        },{
+            "name":"Ussop",
+            "Alignment": "hider"
+        },{
+            "name":"Shiven",
+            "Alignment": "explorer"
+        },{
+            "name":"Jacob",
+            "Alignment": "explorer"
+        },{
+            "name":"Joe",
+            "Alignment": "explorer"
+        },{
+            "name":"Zach",
+            "Alignment": "explorer"
+        },{
+            "name":"Xavi",
+            "Alignment": "explorer"
+        },{
+            "name":"the Ki-high-ye-on",
+            "Alignment": "explorer"
+        },{
+            "name":"Luffy",
+            "Alignment": "explorer"
+        },{
+            "Name": "Lucas",
+            "Alignment": "fighter"
+        },{
+            "Name": "Felix",
+            "Alignment": "fighter"
+        },{
+            "Name": "Jospeh",
+            "Alignment": "fighter"
+        },{
+            "Name": "Harry",
+            "Alignment": "fighter"
+        },{
+            "Name": "Libby",
+            "Alignment": "fighter"
+        },{
+            "Name": "Beth",
+            "Alignment": "fighter"
+        },{
+            "Name": "Sung Jin-Woo",
+            "Alignment": "fighter"
+        },{
+            "Name": "Zoro",
+            "Alignment": "fighter"
+        }
+    ],
     
     "hiderActions": [
         "gets drunk on cactus juice",

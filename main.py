@@ -32,13 +32,19 @@ class Player:
             print(f"{self.name} {random.choice(data["socailInteractions"])} {other.name}")
     
     def kill(self, other):
-        if other == None: # death specific to disaster
-            # TODO check if disaster revealed
-            print(f"{self.name} {random.choice(disaster["deaths"])}")
-        elif self == other: # self death
+        # have the caller kill another person
+        if self == other: # self death
             print(f"{self.name} {random.choice(data["suicides"])}")
         else: # player kills other player
             print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
+    
+    def disasterEfect(self):
+        if diseasterRevealed:
+            # kill someone with the disaster specific deaths
+            print(f"{self.name} {random.choice(disaster["deaths"])}")
+        else:
+            # show sign of disaster
+            print(f"{random.choice(totalPlayerList)} {random.choice(disaster["warnings"])}")
         
 
 def choseDisaster(map: str) -> dict:
