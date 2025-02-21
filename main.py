@@ -27,17 +27,17 @@ class Player:
             print(f"{self.name} {random.choice(data["socailInteractions"])} {other.name}")
     
     def kill(self, other: Player) -> None:
-        # have the calling object kill another player
+        # the calling object is killed by another player
         if self == other:
             # if it is the same player, do a sucide
             print(f"{self.name} {random.choice(data["suicides"])}")
         else:
-            # calling player kills other player
+            # calling player is killed by another player
             print(f"{self.name} {random.choice(data["socailDeaths"])} {other.name}")
         
         # remove the other playe from the list of players
         # other is always killed, even if self = other
-        players.remove(other)
+        players.remove(self)
     
     def disasterEfect(self) -> None:
         # check if the disaster is revealed
@@ -149,6 +149,7 @@ while contInput:
         # this is a list of the possible alignments, and the user's input is used to choose one of them
         # we subtract 1 from the alignment because the list is 0-indexed, but the user's input is 1-indexed
         # this makes sure the new player object has the correct alignment
+del playerName
 
 
 print(f"\nSite:{map["name"]}\nDisaster Unkown\n")
@@ -198,7 +199,6 @@ while not gameWon:
         # command entered
         # tokenise command
         command = userInput.split(" ")
-        # options are /kill, /revive, /help, /create
         match command[0]:
             case "/help":
                 # display options
@@ -206,6 +206,7 @@ while not gameWon:
                 print(f"/revive {YELLOW}<name>{END}\n\trevives a player")
                 print(f"/create {YELLOW}<name>{END} {YELLOW}<alignment>{END}\n\tadds a new player")
                 print(f"/players\n\tlists currently alive players")
+                print(f"/update {YELLOW}<name>{END} {YELLOW}<property>{END} {YELLOW}<value>{END}\n\tupdates a property of a player")
             
             case "/kill":
                 found = False
@@ -220,7 +221,7 @@ while not gameWon:
                         
                 if not found:
                     # no players removed
-                    print(f"{RED}\tERROR: player not found{END}")
+                    print(f"{RED}\tERROR: player does not exist{END}")
             
             case "/revive":
                 # add player back to list
@@ -235,7 +236,7 @@ while not gameWon:
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
                         print(f"\t{YELLOW}{players[-1]}{END} has been revived")
                 else:
-                    print(f"{RED}\tERROR: player does not exist, to create a new player use /create{END}")
+                    print(f"{RED}\tERROR: player does not exist{END}")
             
             case "/create":
                 if command[1] in allPlayers:
@@ -253,6 +254,51 @@ while not gameWon:
             
             case "/players":
                 for i in players: print(f"\t{i}")
+            
+            case "/update":
+                # check if player exists
+                if command[1] not in [i.name for i in allPlayers]:
+                    # player doesn't exists
+                    print(f"{RED}\tERROR: player does not exist{END}")
+                    
+                
+                else:
+                    # player exists
+                    # find player index in players and allPlayers
+                    for i in range(len(players)):
+                        if players[i].name == command[1]:
+                            # player found
+                            playerIndex = i
+                            break
+                    
+                    for i in range(len(allPlayers)):
+                        if allPlayers[i].name == command[1]:
+                            # player found
+                            allPlayerIndex = i
+                            break
+                    
+                    match command[2]:
+                        case "name":
+                            if command[3] in [i.name for i in allPlayers]:
+                                # name used by someone else
+                                print(f"{RED}\tERROR: player name already in use{END}")
+                            else:
+                                # name unused
+                                # update both lists of players
+                                players[playerIndex].name = command[3]
+                                allPlayers[allPlayerIndex].name = command[3]
+                                print(f"\tchanged {YELLOW}{command[1]}'s{END} name to {YELLOW}{command[3]}{END}")
+                        case "alignment":
+                            if command[3] in ["hider", "explorer", "fighter"]:
+                                # user entered valid alignment
+                                players[playerIndex].alignment = command[3]
+                                allPlayers[allPlayerIndex].alignment = command[3]
+                                print(f"\tchanged {YELLOW}{command[1]}'s{END} alignment to {YELLOW}{command[3]}{END}")
+                            else:
+                                print(f"{RED}\tERROR: unknown alignment{END}")
+                                
+                        case _:
+                            print(f"{RED}\tERROR: unknown property{END}")
             
             case _:
                 # entered command is invalid
