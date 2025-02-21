@@ -1,6 +1,11 @@
 import random
 import json
-from colours import *
+import colours as cols
+
+# debug colours
+print(f"{cols.fg.RED}red {cols.fg.GREEN}green {cols.fg.YELLOW}yellow {cols.fg.BLUE}blue {cols.fg.MAGENTA}magenta {cols.fg.CYAN}cyan {cols.END}")
+print(f"{cols.bg.RED}red {cols.bg.GREEN}green {cols.bg.YELLOW}yellow {cols.bg.BLUE}blue {cols.bg.MAGENTA}magenta {cols.bg.CYAN}cyan {cols.END}")
+print(f"{cols.fg.RGB(128,50,76)}{cols.bg.RGB(12,37,58)}Hiiii{cols.END}")
 
 class Player: pass # stops python complaining about type hinting
 class Player:
@@ -204,12 +209,12 @@ while not gameWon:
                 if len(command) == 1:
                     # no command specified
                     # display options
-                    print(f"/help {CYAN}optional: {YELLOW}<command>{END}\n\tdisplays general help or help abour a specific command if specified")
-                    print(f"/kill {YELLOW}<name>{END}\n\tkills a player")
-                    print(f"/revive {YELLOW}<name>{END}\n\trevives a player")
-                    print(f"/create {YELLOW}<name>{END} {YELLOW}<alignment>{END}\n\tadds a new player")
+                    print(f"/help {cols.fg.CYAN}optional: {cols.fg.YELLOW}<command>{cols.END}\n\tdisplays general help or help abour a specific command if specified")
+                    print(f"/kill {cols.fg.YELLOW}<name>{cols.END}\n\tkills a player")
+                    print(f"/revive {cols.fg.YELLOW}<name>{cols.END}\n\trevives a player")
+                    print(f"/create {cols.fg.YELLOW}<name>{cols.END} {cols.fg.YELLOW}<alignment>{cols.END}\n\tadds a new player")
                     print(f"/players\n\tlists currently alive players")
-                    print(f"/update {YELLOW}<name>{END} {YELLOW}<property>{END} {YELLOW}<value>{END}\n\tupdates a property of a player")
+                    print(f"/update {cols.fg.YELLOW}<name>{cols.END} {cols.fg.YELLOW}<property>{cols.END} {cols.fg.YELLOW}<value>{cols.END}\n\tupdates a property of a player")
                 else:
                     match command[1]:
                         case "help":
@@ -226,7 +231,7 @@ while not gameWon:
                             print(f"not implemented yet lol")
                         case _:
                             # invalid command name
-                            print(f"{RED}\tERROR: command does not exist{END}")
+                            print(f"{cols.fg.RED}\tERROR: command does not exist{cols.END}")
             
             case "/kill":
                 found = False
@@ -234,14 +239,14 @@ while not gameWon:
                     # if players name matches input
                     if players[i].name == command[1]:
                         # remove from players list
-                        print(f"\t{YELLOW}{players[i]}{END} was killed")
+                        print(f"\t{cols.fg.YELLOW}{players[i]}{cols.END} was killed")
                         del[players[i]]
                         found = True
                         break
                         
                 if not found:
                     # no players removed
-                    print(f"{RED}\tERROR: player does not exist{END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
             
             case "/revive":
                 # add player back to list
@@ -250,27 +255,27 @@ while not gameWon:
                     # player exists (but may be alive or dead)
                     if command[1] in [i.name for i in players]:
                         # player is already in the game and alive
-                        print(f"{RED}\tERROR: player is already alive{END}")
+                        print(f"{cols.fg.RED}\tERROR: player is already alive{cols.END}")
                     else:
                         # player is not alive and exists
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
-                        print(f"\t{YELLOW}{players[-1]}{END} has been revived")
+                        print(f"\t{cols.fg.YELLOW}{players[-1]}{cols.END} has been revived")
                 else:
-                    print(f"{RED}\tERROR: player does not exist{END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
             
             case "/create":
                 if command[1] in allPlayers:
                     # player exists
-                    print(f"{RED}\tERROR: player already exists{END}")
+                    print(f"{cols.fg.RED}\tERROR: player already exists{cols.END}")
                 else:
                     # attempt to add a new player
                     if command[2] not in ["hider", "explorer", "fighter"]:
                         # alignment is invalid
-                        print(f"{RED}\tERROR: invalid alignment{END}")
+                        print(f"{cols.fg.RED}\tERROR: invalid alignment{cols.END}")
                     else:
                         #valid name & alignment
                         players.append(Player(command[1], command[2]))
-                        print(f"{YELLOW}{players[-1]}{END} has been created")
+                        print(f"{cols.fg.YELLOW}{players[-1]}{cols.END} has been created")
             
             case "/players":
                 for i in players: print(f"\t{i}")
@@ -279,7 +284,7 @@ while not gameWon:
                 # check if player exists
                 if command[1] not in [i.name for i in allPlayers]:
                     # player doesn't exists
-                    print(f"{RED}\tERROR: player does not exist{END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
                     
                 
                 else:
@@ -301,25 +306,25 @@ while not gameWon:
                         case "name":
                             if command[3] in [i.name for i in allPlayers]:
                                 # name used by someone else
-                                print(f"{RED}\tERROR: player name already in use{END}")
+                                print(f"{cols.fg.RED}\tERROR: player name already in use{cols.END}")
                             else:
                                 # name unused
                                 # update both lists of players
                                 players[playerIndex].name = command[3]
                                 allPlayers[allPlayerIndex].name = command[3]
-                                print(f"\tchanged {YELLOW}{command[1]}'s{END} name to {YELLOW}{command[3]}{END}")
+                                print(f"\tchanged {cols.fg.YELLOW}{command[1]}'s{cols.END} name to {cols.fg.YELLOW}{command[3]}{cols.END}")
                         case "alignment":
                             if command[3] in ["hider", "explorer", "fighter"]:
                                 # user entered valid alignment
                                 players[playerIndex].alignment = command[3]
                                 allPlayers[allPlayerIndex].alignment = command[3]
-                                print(f"\tchanged {YELLOW}{command[1]}'s{END} alignment to {YELLOW}{command[3]}{END}")
+                                print(f"\tchanged {cols.fg.YELLOW}{command[1]}'s{cols.END} alignment to {cols.fg.YELLOW}{command[3]}{cols.END}")
                             else:
-                                print(f"{RED}\tERROR: unknown alignment{END}")
+                                print(f"{cols.fg.RED}\tERROR: unknown alignment{cols.END}")
                                 
                         case _:
-                            print(f"{RED}\tERROR: unknown property{END}")
+                            print(f"{cols.fg.RED}\tERROR: unknown property{cols.END}")
             
             case _:
                 # entered command is invalid
-                print(f"{RED}\tERROR: invalid command, use /help for help{END}")
+                print(f"{cols.fg.RED}\tERROR: invalid command, use /help for help{cols.END}")
