@@ -1,7 +1,6 @@
 {
-    "disasters": [
-        {
-            "name": "Volcanic Eruption",
+    "disasters": {
+        "Volcanic Eruption":{
             "warnings": [
                 "see smoke rising in the distance"
             ],
@@ -9,8 +8,8 @@
                 "suffocates from the smoke in the air",
                 "tried to swim in lava"
             ]
-        },{
-            "name": "Tsunami",
+        },
+        "Tsunami":{
             "warnings": [
                 "sees the water recceding",
                 "notices a lack of animals"
@@ -18,8 +17,8 @@
             "deaths": [
                 "drowns"
             ]
-        },{
-            "name": "Earthquake",
+        },
+        "Earthquake":{
             "warnings": [
                 "feels some shaking",
                 "sees animals freaking out"
@@ -27,8 +26,8 @@
             "deaths": [
                 "falls into the cracks of the Earth"
             ]
-        },{
-            "name": "Tornado",
+        },
+        "Tornado":{
             "warnings": [
                 "can see strong winds in the horizon",
                 "sees a lack of birds"
@@ -36,32 +35,32 @@
             "deaths": [
                 "gets yeeted into oblivion by the strong winds"
             ]
-        },{
-            "name": "Asteroid",
+        },
+        "Asteroid":{
             "warnings": [
                 "sees a flashing light in the sky"
             ],
             "deaths": [
                 "gets pummeled by an asteriod"
             ]
-        },{
-            "name": "Great Deppression",
+        },
+        "Great Deppression":{
             "warnings": [
                 "sees many frantic people in suits panicking"
             ],
             "deaths": [
                 "dies of regret due to stock market crash"
             ]
-        },{
-            "name": "Super Storm",
+        },
+        "Super Storm":{
             "warnings": [
                 "hears a distant boom"
             ],
             "deaths": [
                 "gets shazamed by lightning"
             ]
-        },{
-            "name": "Blizzard",
+        },
+        "Blizzard":{
             "warnings": [
                 "starts to see its snowing"
             ],
@@ -69,17 +68,19 @@
                 "dies of frostbite"
             ]
         }
-    ],
+    },
 
     "maps": {
         "Mount Everest": {
             "RelativeDisasterProbabilities": {
                 "Blizzard": 10
+
             }
         },
         "London": {
             "RelativeDisasterProbabilities": {
-                "Great Deppression": 10
+                "Great Deppression": 10,
+                "Tornado": 0.3
             }
         },
         "Antractica": {
@@ -89,6 +90,7 @@
         },
         "Amazon Rainforest": {
             "RelativeDisasterProbabilities": {
+                "Blizzard": 0.2
 
             }
         },
@@ -100,13 +102,17 @@
         "Mars": {
             "RelativeDisasterProbabilities": {
                 "Asteroid": 10,
-                "Tsunami": 0
+                "Tsunami": 0,
+                "Tornado": 0,
+                "Blizzard": 0
             }
         },
         "The Moon": {
             "RelativeDisasterProbabilities": {
                 "Asteroid": 10,
-                "Tsunami": 0
+                "Tsunami": 0,
+                "Tornado": 0,
+                "Blizzard": 0
             }
         }
     },

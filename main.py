@@ -63,14 +63,49 @@ allPlayers = players.copy() # all players that have ever existed, used with /rev
 # use .copy() because by default it is only copied by reference
 
 # randomly choose current map
-map = random.choice(list(data["maps"].items()))# TODO json change
+map = random.choice(list(data["maps"].items()))
 # turn the map back into a dictionary
-map = {"name": map[0], "RelativeDisasterProbabilities": map[1]}
+map = {"name": map[0], "RelativeDisasterProbabilities": map[1]["RelativeDisasterProbabilities"]}
 
 
-# set the disaster
-# TODO relative probabilities from json
-disaster = random.choice(data["disasters"])
+# set the disaster ============================================================================================================================
+
+# create a dictionary of "disaster name": "relative probability"
+probabilities = {}
+for name in data["disasters"]:
+    # get the name of each disaster
+    # set it's probability to 1
+    probabilities.update({name: 1})
+
+# get name of each disaster with a specified probability within the map object
+for name in map["RelativeDisasterProbabilities"]:
+    # update the dictionary with the new probability
+    probabilities.update({name: map["RelativeDisasterProbabilities"][name]})
+
+# make the probabilites cumulative
+total = 0
+for i in probabilities:
+    # iterate over dictionary keys
+    total += probabilities[i]
+    probabilities.update({i: total})
+
+# chose a random number between 0 and the total
+num = random.uniform(0, total)
+# remove disasters from the probabilites dictionary who's probability is < the random num
+temp = {}
+for i in probabilities:
+    if probabilities[i] > num:
+        temp.update({i: probabilities[i]})
+probabilities = temp
+
+# get the key of the value with the lowest probability
+temp = min(probabilities.values())
+disasterName = [key for key in probabilities if probabilities[key] == temp][0]
+disaster = data["disasters"][disasterName]
+disaster.update({"name": disasterName})
+pass
+    
+    
 
 
 # main game loop ==============================================================================================================================
@@ -217,7 +252,7 @@ while not gameWon:
                         print(f"{YELLOW}{players[-1]}{END} has been created")
             
             case "/players":
-                for i in players: print(f"\t{i.name} the {i.alignment}")
+                for i in players: print(f"\t{i}")
             
             case _:
                 # entered command is invalid
