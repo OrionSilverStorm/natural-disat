@@ -108,10 +108,6 @@ temp = min(probabilities.values())
 disasterName = [key for key in probabilities if probabilities[key] == temp][0]
 disaster = data["disasters"][disasterName]
 disaster.update({"name": disasterName})
-pass
-    
-    
-
 
 # main game loop ==============================================================================================================================
 diseasterRevealed = False
