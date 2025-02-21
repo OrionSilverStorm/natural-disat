@@ -201,12 +201,22 @@ while not gameWon:
         command = userInput.split(" ")
         match command[0]:
             case "/help":
-                # display options
-                print(f"/kill {YELLOW}<name>{END}\n\tkills a player")
-                print(f"/revive {YELLOW}<name>{END}\n\trevives a player")
-                print(f"/create {YELLOW}<name>{END} {YELLOW}<alignment>{END}\n\tadds a new player")
-                print(f"/players\n\tlists currently alive players")
-                print(f"/update {YELLOW}<name>{END} {YELLOW}<property>{END} {YELLOW}<value>{END}\n\tupdates a property of a player")
+                if len(command) == 1:
+                    # no command specified
+                    # display options
+                    print(f"/help {CYAN}optional: {YELLOW}<command>{END}\n\tdisplays general help or help abour a specific command if specified")
+                    print(f"/kill {YELLOW}<name>{END}\n\tkills a player")
+                    print(f"/revive {YELLOW}<name>{END}\n\trevives a player")
+                    print(f"/create {YELLOW}<name>{END} {YELLOW}<alignment>{END}\n\tadds a new player")
+                    print(f"/players\n\tlists currently alive players")
+                    print(f"/update {YELLOW}<name>{END} {YELLOW}<property>{END} {YELLOW}<value>{END}\n\tupdates a property of a player")
+                else:
+                    match command[1]:
+                        case "kill":
+                            pass
+                        case _:
+                            # invalid command name
+                            print(f"{RED}\tERROR: command does not exist{END}")
             
             case "/kill":
                 found = False
