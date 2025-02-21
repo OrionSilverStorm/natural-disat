@@ -212,8 +212,18 @@ while not gameWon:
                     print(f"/update {YELLOW}<name>{END} {YELLOW}<property>{END} {YELLOW}<value>{END}\n\tupdates a property of a player")
                 else:
                     match command[1]:
+                        case "help":
+                            print(f"not implemented yet lol")
                         case "kill":
-                            pass
+                            print(f"not implemented yet lol")
+                        case "revive":
+                            print(f"not implemented yet lol")
+                        case "create":
+                            print(f"not implemented yet lol")
+                        case "players":
+                            print(f"not implemented yet lol")
+                        case "update":
+                            print(f"not implemented yet lol")
                         case _:
                             # invalid command name
                             print(f"{RED}\tERROR: command does not exist{END}")
