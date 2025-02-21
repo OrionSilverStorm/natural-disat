@@ -9,6 +9,10 @@ class Player:
         self.name = name
         self.alignment = alignment
     
+    def __str__(self):
+        # tell python how to turn a Player object into a string
+        return f"{self.name} the {self.alignment}"
+    
     def action(self) -> None:
         # make a single player (the calling object) do an action
         print(f"{self.name} {random.choice(data["actions"][self.alignment])}")
@@ -124,7 +128,7 @@ while not gameWon:
         if len(players) == 1:
             # check if there is only one player left
             # if there is print the winner and stop the game
-            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {map["name"]}\nWINNER:{players[0].name} the {players[0].alignment}")
+            print(f"THE SOLE SURVIVER OF THE DISEASTER: {disaster["name"]} IN {map["name"]}\nWINNER:{players[0]}")
             gameWon = True
             
         else:
@@ -135,7 +139,7 @@ while not gameWon:
                 print(f"DISEASTER HAS STARTED TO MANIFEST\n...\n...\n...\nDISEASTER REVEALED: {disaster["name"]}")
                 diseasterRevealed = True
             
-            # choose action
+            # choose random action
             match random.randint(1,6):
                 # make a normal action 3x more likely
                 case 1:
@@ -174,7 +178,7 @@ while not gameWon:
                     # if players name matches input
                     if players[i].name == command[1]:
                         # remove from players list
-                        print(f"\t{YELLOW}{players[i].name}{END} the {YELLOW}{players[i].alignment}{END} was killed")
+                        print(f"\t{YELLOW}{players[i]}{END} was killed")
                         del[players[i]]
                         found = True
                         break
@@ -194,7 +198,7 @@ while not gameWon:
                     else:
                         # player is not alive and exists
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
-                        print(f"\t{YELLOW}{players[-1].name}{END} the {YELLOW}{players[-1].alignment}{END} has been revived")
+                        print(f"\t{YELLOW}{players[-1]}{END} has been revived")
                 else:
                     print(f"{RED}\tERROR: player does not exist, to create a new player use /create{END}")
             
@@ -210,7 +214,7 @@ while not gameWon:
                     else:
                         #valid name & alignment
                         players.append(Player(command[1], command[2]))
-                        print(f"{YELLOW}{players[-1].name}{END} the {YELLOW}{players[-1].alignment}{END} has been created")
+                        print(f"{YELLOW}{players[-1]}{END} has been created")
             
             case "/players":
                 for i in players: print(f"\t{i.name} the {i.alignment}")
