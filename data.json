@@ -75,7 +75,8 @@
             "RelativeDisasterProbabilities": {
                 "Blizzard": 10
 
-            }
+            },
+            "imageName": ""
         },
         "London": {
             "RelativeDisasterProbabilities": {
@@ -83,26 +84,30 @@
                 "Tornado": 0.3,
                 "Earthquake": 0.5,
                 "Volcanic Eruption": 0.7
-            }
+            },
+            "imageName": ""
         },
         "Antractica": {
             "RelativeDisasterProbabilities": {
                 "Blizzard": 10,
                 "Tsunami": 2,
                 "Earthquake": 0.9
-            }
+            },
+            "imageName": ""
         },
         "Amazon Rainforest": {
             "RelativeDisasterProbabilities": {
                 "Blizzard": 0.2,
                 "Tsunami": 2
 
-            }
+            },
+            "imageName": "jungle.bmp"
         },
         "Atlantis": {
             "RelativeDisasterProbabilities": {
                 "Tsunami": 0
-            }
+            },
+            "imageName": "atlantis.bmp"
         },
         "Mars": {
             "RelativeDisasterProbabilities": {
@@ -110,7 +115,8 @@
                 "Tsunami": 0,
                 "Tornado": 0,
                 "Blizzard": 0
-            }
+            },
+            "imageName": "mars.bmp"
         },
         "The Moon": {
             "RelativeDisasterProbabilities": {
@@ -118,7 +124,8 @@
                 "Tsunami": 0,
                 "Tornado": 0,
                 "Blizzard": 0
-            }
+            },
+            "imageName": "moon.bmp"
         }
     },
 

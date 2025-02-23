@@ -11,9 +11,9 @@ class fg:
     MAGENTA = "\033[95m"
     CYAN = "\033[96m"
 
-    def RGB(r: int, g: int, b: int):
+    def RGB(col: tuple[int, int, int]):
         # sets foreground colour to RGB values
-        return f"\033[38;2;{r};{g};{b}m"
+        return f"\033[38;2;{col[0]};{col[1]};{col[2]}m"
 
 class bg:
     # changes colour of the background
@@ -28,9 +28,9 @@ class bg:
     MAGENTA = "\033[105m"
     CYAN = "\033[106m"
 
-    def RGB(r: int, g: int, b: int):
+    def RGB(col: tuple[int, int, int]):
         # sets background colour to RGB values
-        return f"\033[48;2;{r};{g};{b}m"
+        return f"\033[48;2;{col[0]};{col[1]};{col[2]}m"
 
 class style:
     BOLD = "\033[1m"

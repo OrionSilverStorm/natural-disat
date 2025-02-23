@@ -1,6 +1,30 @@
 import random
 import json
 import colours as cols
+import PIL.Image
+
+def Showimage(name):
+    # works best with terminal font size of 14
+    try:
+        im = PIL.Image.open(f"./images/{name}")
+    except:
+        return
+    
+    #screen x,y
+    for y in range(0, im.height, 2):
+        for x in range(im.width):
+            topColour = im.getpixel((x,y))
+            topColour = cols.fg.RGB(topColour)
+            
+            try:
+                bottomColour = im.getpixel((x,y+1))
+                bottomColour = cols.bg.RGB(bottomColour)
+            except:
+                bottomColour = cols.END
+            
+            print(bottomColour + topColour, end="▀")
+        print(cols.END)
+    
 
 # global constant used to give names a colour based on their alignment
 colourDict = {"hider": cols.fg.BLUE,
@@ -70,7 +94,9 @@ allPlayers = players.copy() # all players that have ever existed, used with /rev
 # randomly choose current map
 map = random.choice(list(data["maps"].items()))
 # turn the map back into a dictionary
-map = {"name": map[0], "RelativeDisasterProbabilities": map[1]["RelativeDisasterProbabilities"]}
+temp = {"name": map[0]}
+map = map[1]
+map.update(temp)
 
 
 # set the disaster ============================================================================================================================
@@ -153,7 +179,9 @@ while addingPlayers:
 del playerName
 
 
-print(f"\nSite:{map["name"]}\nDisaster Unkown\n")
+print(f"\nSite: {map["name"]}\nDisaster Unkown\n")
+
+Showimage(map["imageName"])
 
 gameWon = False
 while not gameWon:
