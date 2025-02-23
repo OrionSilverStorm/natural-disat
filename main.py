@@ -114,14 +114,14 @@ diseasterRevealed = False
 print(f"{cols.style.BOLD}{cols.fg.RED}WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR{cols.END}\n")
 
 # get extra players
-contInput = True
-while contInput:
+addingPlayers = True
+while addingPlayers:
     # get a player name from the user
     playerName = str(input("Enter extra Player name (Enter to skip entering extra people): "))
 
     # if the user enters nothing, stop asking for more players
     if playerName == "":
-        contInput = False
+        addingPlayers = False
         
     else:
         # attempt to add a new player
@@ -178,27 +178,24 @@ while not gameWon:
             
             # choose random action
             match random.randint(1,6):
-                # make a normal action 3x more likely
-                case 1:
-                    random.choice(players).action()
-                case 2:
-                    random.choice(players).action()
-                case 3:
-                    random.choice(players).action()
-
-                #socail interactions
-                case 4:
+                case 1: # socail interactions
                     random.choice(players).socialise(random.choice(players))
-                #diseaster effects
-                case 5:
+                    
+                case 2: # diseaster effects
                     random.choice(players).disasterEfect()
-                #player murder deaths
-                case 6:
+                    # will either show a warning or kill the player depending on if the disaster has been revealed
+                    
+                case 3: #player murder deaths
                     random.choice(players).kill(random.choice(players))
+                    #             ^^^^^^^    gets killed by   ^^^^^^^
+                    
+                case _: # "do nothing" actions
+                    #4, 5, or 6 so the most likely outcome
+                    random.choice(players).action()
     
     else:
         # command entered
-        # tokenise command
+        # tokenize command
         command = userInput.split(" ")
         match command[0]:
             case "/help":

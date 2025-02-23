@@ -1,5 +1,5 @@
 class fg:
-    # changes colour of the text (foreground)
+    # changes colour of the foreground (the text)
     BLACK = "\033[30m"
     GREY = "\033[90m"
     WHITE = "\033[97m"
