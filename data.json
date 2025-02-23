@@ -80,17 +80,22 @@
         "London": {
             "RelativeDisasterProbabilities": {
                 "Great Deppression": 10,
-                "Tornado": 0.3
+                "Tornado": 0.3,
+                "Earthquake": 0.5,
+                "Volcanic Eruption": 0.7
             }
         },
         "Antractica": {
             "RelativeDisasterProbabilities": {
-                "Blizzard": 10
+                "Blizzard": 10,
+                "Tsunami": 2,
+                "Earthquake": 0.9
             }
         },
         "Amazon Rainforest": {
             "RelativeDisasterProbabilities": {
-                "Blizzard": 0.2
+                "Blizzard": 0.2,
+                "Tsunami": 2
 
             }
         },

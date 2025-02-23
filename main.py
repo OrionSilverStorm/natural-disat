@@ -7,11 +7,6 @@ colourDict = {"hider": cols.fg.BLUE,
               "explorer": cols.fg.GREEN,
               "fighter": cols.fg.RED}
 
-# debug colours
-print(f"{cols.fg.RED}red {cols.fg.GREEN}green {cols.fg.YELLOW}yellow {cols.fg.BLUE}blue {cols.fg.MAGENTA}magenta {cols.fg.CYAN}cyan {cols.END}")
-print(f"{cols.bg.RED}red {cols.bg.GREEN}green {cols.bg.YELLOW}yellow {cols.bg.BLUE}blue {cols.bg.MAGENTA}magenta {cols.bg.CYAN}cyan {cols.END}")
-print(f"{cols.fg.RGB(128,50,76)}{cols.bg.RGB(12,37,58)}Hiiii{cols.END}")
-
 class Player: pass # stops python complaining about type hinting
 class Player:
     def __init__(self, name: str, alignment: str) -> None:
@@ -21,7 +16,6 @@ class Player:
     
     def __str__(self):
         # tell python how to turn a Player object into a string
-
         return f"{self.name} the {self.alignment}"
     
     def action(self) -> None:
@@ -117,7 +111,7 @@ disaster.update({"name": disasterName})
 
 # main game loop ==============================================================================================================================
 diseasterRevealed = False
-print("WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR\n ")
+print(f"{cols.style.BOLD}{cols.fg.RED}WELCOME TO YOUR DOOM - NATURAL DISASTER SIMULATOR{cols.END}\n")
 
 # get extra players
 contInput = True
