@@ -1,30 +1,6 @@
 import random
 import json
 import colours as cols
-import PIL.Image
-
-def Showimage(name):
-    # works best with terminal font size of 14
-    try:
-        im = PIL.Image.open(f"./images/{name}")
-    except:
-        return
-    
-    #screen x,y
-    for y in range(0, im.height, 2):
-        for x in range(im.width):
-            topColour = im.getpixel((x,y))
-            topColour = cols.fg.RGB(topColour)
-            
-            try:
-                bottomColour = im.getpixel((x,y+1))
-                bottomColour = cols.bg.RGB(bottomColour)
-            except:
-                bottomColour = cols.END
-            
-            print(bottomColour + topColour, end="▀")
-        print(cols.END)
-    
 
 # global constant used to give names a colour based on their alignment
 colourDict = {"hider": cols.fg.BLUE,
@@ -180,8 +156,6 @@ del playerName
 
 
 print(f"\nSite: {map["name"]}\nDisaster Unkown\n")
-
-Showimage(map["imageName"])
 
 gameWon = False
 while not gameWon:
