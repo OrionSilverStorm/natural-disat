@@ -227,7 +227,7 @@ while not gameWon:
                             print(f"not implemented yet lol")
                         case _:
                             # invalid command name
-                            print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: command does not exist{cols.END}")
+                            print(f"{cols.fg.RED}\tERROR: command does not exist{cols.END}")
             
             case "/kill":
                 found = False
@@ -242,7 +242,7 @@ while not gameWon:
                         
                 if not found:
                     # no players removed
-                    print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player does not exist{cols.END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
             
             case "/revive":
                 # add player back to list
@@ -251,23 +251,23 @@ while not gameWon:
                     # player exists (but may be alive or dead)
                     if command[1] in [i.name for i in players]:
                         # player is already in the game and alive
-                        print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player is already alive{cols.END}")
+                        print(f"{cols.fg.RED}\tERROR: player is already alive{cols.END}")
                     else:
                         # player is not alive and exists
                         players.append(Player(command[1], [i["alignment"] for i in data["players"] if i["name"] == command[1]][0]))
                         print(f"\t{cols.fg.YELLOW}{players[-1].name}{cols.END} has been revived")
                 else:
-                    print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player does not exist{cols.END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
             
             case "/create":
                 if command[1] in allPlayers:
                     # player exists
-                    print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player already exists{cols.END}")
+                    print(f"{cols.fg.RED}\tERROR: player already exists{cols.END}")
                 else:
                     # attempt to add a new player
                     if command[2] not in ["hider", "explorer", "fighter"]:
                         # alignment is invalid
-                        print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: invalid alignment{cols.END}")
+                        print(f"{cols.fg.RED}\tERROR: invalid alignment{cols.END}")
                     else:
                         #valid name & alignment
                         players.append(Player(command[1], command[2]))
@@ -280,7 +280,7 @@ while not gameWon:
                 # check if player exists
                 if command[1] not in [i.name for i in players]:
                     # player doesn't exists
-                    print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player does not exist{cols.END}")
+                    print(f"{cols.fg.RED}\tERROR: player does not exist{cols.END}")
                     
                 
                 else:
@@ -302,7 +302,7 @@ while not gameWon:
                         case "name":
                             if command[3] in [i.name for i in allPlayers]:
                                 # name used by someone else
-                                print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: player name already in use{cols.END}")
+                                print(f"{cols.fg.RED}\tERROR: player name already in use{cols.END}")
                             else:
                                 # name unused
                                 # update both lists of players
@@ -316,11 +316,14 @@ while not gameWon:
                                 allPlayers[allPlayerIndex].alignment = command[3]
                                 print(f"\tchanged {cols.fg.YELLOW}{command[1]}'s{cols.END} alignment to {cols.fg.YELLOW}{command[3]}{cols.END}")
                             else:
-                                print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: unknown alignment{cols.END}")
+                                print(f"{cols.fg.RED}\tERROR: unknown alignment{cols.END}")
                                 
                         case _:
-                            print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: unknown property{cols.END}")
+                            print(f"{cols.fg.RED}\tERROR: unknown property{cols.END}")
             
             case _:
                 # entered command is invalid
-                print(f"{cols.fg.RED}{cols.style.BOLD}\tERROR: invalid command, use /help for help{cols.END}")
+                if command[0][0] != "/":
+                    print(f"{cols.fg.RED}\tuse / to start a command{cols.END}")
+                else:
+                    print(f"{cols.fg.RED}\tERROR: invalid command, use /help for help{cols.END}")
