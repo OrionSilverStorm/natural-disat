@@ -200,6 +200,11 @@ while not gameWon:
         # command entered
         # tokenize command
         command = userInput.split(" ")
+        # check for bad tokens
+        if "" in command:
+            # empty token
+            command.remove("")
+            
         match command[0]:
             case "/help":
                 if len(command) == 1:
